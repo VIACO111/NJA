@@ -1,0 +1,46 @@
+---
+interface Resource {
+  title: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  title?: string;
+  resources: Resource[];
+}
+
+const { title = 'Resources', resources } = Astro.props;
+---
+
+<section class="bg-slate-50 py-20 sm:py-28">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="text-2xl font-semibold tracking-tight text-via-navy sm:text-3xl">
+      {title}
+    </h2>
+    <p class="mt-4 text-slate-600">
+      Sign up for the training, explore the team program, or join the community
+    </p>
+    <ul class="mt-10 space-y-4">
+      {resources.map((r) => (
+        <li>
+          <a
+            href={r.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:border-via-navy-muted/50 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between"
+          >
+            <span class="font-medium text-via-navy group-hover:underline">
+              {r.title}
+            </span>
+            {r.description && (
+              <span class="mt-1 text-sm text-slate-500 sm:mt-0 sm:ml-4 sm:text-right">
+                {r.description}
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

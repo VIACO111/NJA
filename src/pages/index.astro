@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Abstract from '../components/Abstract.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import SpeakerBio from '../components/SpeakerBio.astro';
+import Resources from '../components/Resources.astro';
+import Footer from '../components/Footer.astro';
+
+// Replace with your actual signup link (e.g. from QR code)
+const TRAINING_SIGNUP_URL = '#signup';
+const TEAM_PROGRAM_URL = 'https://www.wearevia.co';
+---
+
+<Layout
+  title="NJA Meetup — Better decisions, better buy-in | VIA CO"
+  description="Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite. At NJA Meetup, Sydney."
+>
+  <main>
+    <Hero
+      title="Better decisions. More buy-in from your C-suite."
+      subtitle="Free training for P&C folks — understand how to improve the quality of decisions in your organisation and get your leaders to buy into the solutions you're proposing."
+      conferenceName="NJA Meetup"
+      date="Sydney"
+      primaryCtaUrl={TRAINING_SIGNUP_URL}
+      primaryCtaLabel="Sign up for free training (limited spots)"
+    />
+    <Abstract
+      title="Why this matters"
+      content="<p>We've all heard about bridging the gap between C-suite and HR. What it really boils down to — the significance of better understanding and communication — is <strong>aligning the decisions being made in a business</strong>.</p><p>People are at the core of any business. You might have the best product, a well thought-out hierarchy, and great software to support your people. A lot of businesses have optimised everything leading up to people, but traditionally, this is where it stops.</p><p>We've been on a journey researching what goes on in people's minds, especially how they make decisions. We bring you real experience in <strong>improving the quality of the decisions</strong> you and everyone in your team makes — and we offer programs for pairs, teams, and entire organisations.</p>"
+    />
+    <KeyTakeaways
+      title="What you'll get"
+      subtitle="Why join the free training"
+      items={[
+        'Why you\'re in the unique position to make the biggest difference: you see the challenges and probably know how to fix them — you need to bridge the gap to get leaders to buy in.',
+        'A practical way to have the strategic conversations that unblock teams: flow-state techniques, egos out of the room, key decisions before the pressure gets too high.',
+        'Free training (first come, first served) to understand how to improve decision quality in your organisation and get more buy-in from your C-suite.',
+      ]}
+    />
+    <SpeakerBio
+      name="The VIA team"
+      title="Executive infrastructure &amp; strategic facilitation"
+      bio="We're experts in having the strategic conversations that unblock teams — using techniques like flow-state to get everyone at ease and the egos out of the room. We've worked with leaders at Cisco, Atlassian, Canva, and others. We design offsites and run programs for pairs, teams, and entire organisations. For P&C folks who want to run these conversations themselves, we've designed a one-of-a-kind training solution."
+      companyName="VIA CO"
+      companyUrl="https://www.wearevia.co"
+    />
+    <Resources
+      title="Next steps"
+      resources={[
+        { title: 'Sign up for the free training', href: TRAINING_SIGNUP_URL, description: 'Limited to 10 spots · 2 groups · first come, first served' },
+        { title: 'Team program — offsites &amp; collective flow state', href: TEAM_PROGRAM_URL, description: '3 spots next quarter · transform your team\'s biggest challenges into lasting solutions' },
+        { title: 'Sydney Talent Meetup', href: 'https://www.meetup.com/en-AU/sydney-talent-meetup/', description: 'Join #NJAMeetup' },
+      ]}
+    />
+    <Footer
+      socialLinks={[
+        { label: 'Meetup', href: 'https://www.meetup.com/en-AU/sydney-talent-meetup/' },
+        { label: 'VIA CO', href: 'https://www.wearevia.co' },
+      ]}
+      poweredBy="VIA CO"
+      poweredByUrl="https://www.wearevia.co"
+    />
+  </main>
+</Layout>

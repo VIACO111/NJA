@@ -1,0 +1,44 @@
+---
+interface SocialLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  socialLinks?: SocialLink[];
+  poweredBy?: string;
+  poweredByUrl?: string;
+}
+
+const { socialLinks = [], poweredBy = 'VIA', poweredByUrl = 'https://www.wearevia.co' } = Astro.props;
+---
+
+<footer class="border-t border-slate-200 bg-white py-12">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="flex flex-wrap justify-center gap-6">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-via-navy-muted transition hover:text-via-navy"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <p class="text-sm text-slate-500">
+        Powered by{' '}
+        <a
+          href={poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-via-navy hover:underline"
+        >
+          {poweredBy}
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

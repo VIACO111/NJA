@@ -1,0 +1,17 @@
+---
+interface Props {
+  title?: string;
+  content: string;
+}
+
+const { title = 'Abstract', content } = Astro.props;
+---
+
+<section class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="text-2xl font-semibold tracking-tight text-via-navy sm:text-3xl">
+      {title}
+    </h2>
+    <div class="mt-8 space-y-6 text-lg text-slate-600 leading-relaxed [&_p]:mt-4 [&_strong]:font-semibold [&_strong]:text-via-navy [&_a]:text-via-navy [&_a]:underline [&_a]:underline-offset-2" set:html={content} />
+  </div>
+</section>
