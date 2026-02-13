@@ -23,7 +23,7 @@ The landing page and pitch are presented by **VIA CO**. Use this when writing or
 
 ## When to use this
 
-- Speaker bio, footer "Powered by," and any mention of who is behind the talk or the site.
+- Speaker bio, footer links, and any mention of who is behind the talk or the site.
 - Ensuring tone fits: premium/strategic, practical, leadership and people-focused, no-BS.
 
 Reference: project root contains `VIA Tome Main (1).pdf` for full company narrative and product/marketing detail.

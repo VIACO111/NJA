@@ -4,9 +4,9 @@ This folder contains documentation to help AI assistants and other LLMs understa
 
 ## What this project is
 
-- **Astro** static site: landing page for a pitch at **NJA Meetup** (Sydney Talent Meetup) in Sydney, Australia.
+- Static landing page for a pitch at **NJA Meetup** (Sydney Talent Meetup) in Sydney, Australia.
 - The site promotes a conference talk / session; the company behind the pitch is **VIA CO** (wearevia.co).
-- Tech: Astro, Tailwind CSS, TypeScript. See `package.json`, `astro.config.mjs`, `tailwind.config.mjs`.
+- Stack in `package.json`; config in `astro.config.mjs`, `tailwind.config.mjs`.
 
 ## Docs in this folder
 
