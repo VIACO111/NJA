@@ -15,7 +15,7 @@ const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -24,7 +24,7 @@ const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
   <body class="min-h-screen bg-white text-via-navy">
     <header class="absolute top-0 left-0 w-full z-40 p-6">
       <div class="mx-auto max-w-6xl">
-        <img src="/via-assets/logo-white.svg" alt="VIA CO" class="h-8 sm:h-10 opacity-90" />
+        <img src={`${import.meta.env.BASE_URL}via-assets/logo-white.svg`} alt="VIA CO" class="h-8 sm:h-10 opacity-90" />
       </div>
     </header>
     <slot />
