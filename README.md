@@ -113,7 +113,9 @@ Use these when editing copy or when another AI needs to understand the project.
    - Or run it manually: **Actions** → **Deploy to GitHub Pages** → **Run workflow**.
    - After it finishes, the site is live at the URL from step 1.
 
-**Other hosts:** You can also upload the contents of **`dist/`** to Netlify, Vercel, S3, etc. For a non–GitHub Pages deploy, remove or set `base: '/'` in `astro.config.mjs` so asset paths are correct.
+**Deploying to cPanel (Git):** The repo includes a [`.cpanel.yml`](.cpanel.yml) for [cPanel Git deployment](https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/). Edit `.cpanel.yml` and set `DEPLOYPATH` to your account (e.g. `/home/your_cpanel_user/public_html/`). Ensure **Node.js** is set up on the server (cPanel → Setup Node.js App). Push to your cPanel Git repo; the post-receive hook will run `npm ci`, `npm run build`, and copy `dist/` into `DEPLOYPATH`.
+
+**Other hosts:** You can also upload the contents of **`dist/`** to Netlify, Vercel, S3, Cloudflare Pages, etc. For a non–GitHub Pages deploy, set `site` and `base` in `astro.config.mjs` as needed (e.g. `base: '/'`).
 
 ---
 

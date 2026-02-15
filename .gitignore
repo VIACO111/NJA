@@ -22,3 +22,6 @@ Thumbs.db
 
 # Local assets (keep out of repo)
 *.pdf
+
+# Project docs (LLM context, not for repo)
+docs/

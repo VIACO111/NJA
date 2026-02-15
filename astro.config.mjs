@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
-// GitHub Pages: https://VIACO111.github.io/NJA/
-const githubUser = 'VIACO111';
-const repoName = 'NJA';
-
+// Cloudflare Pages: https://opw.wearevia.co
 export default defineConfig({
-  site: `https://${githubUser}.github.io`,
-  base: `/${repoName}/`,
+  site: 'https://opw.wearevia.co',
   integrations: [tailwind()],
+  build: {
+    // Astro default; Cloudflare Pages should use output dir "dist"
+    inlineStylesheets: 'auto',
+  },
 });

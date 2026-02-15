@@ -10,13 +10,20 @@ interface Props {
   primaryCtaLabel?: string;
 }
 
-const { title, subtitle, conferenceName, date, primaryCtaUrl = '#', primaryCtaLabel = 'Sign up' } = Astro.props;
+const { title, subtitle, conferenceName, date, primaryCtaUrl = '#', primaryCtaLabel = 'Sign up', backgroundImage } = Astro.props;
 ---
 
 <section class="relative bg-via-navy text-white overflow-hidden">
-  <div class="mx-auto max-w-6xl px-6 py-24 sm:py-32 lg:py-40">
+  {backgroundImage && (
+    <div class="absolute inset-0 z-0">
+      <img src={backgroundImage} alt="" class="w-full h-full object-cover opacity-20" />
+      <div class="absolute inset-0 bg-gradient-to-t from-via-navy via-via-navy/80 to-transparent"></div>
+    </div>
+  )}
+
+  <div class="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-32 lg:py-40">
     <div class="mx-auto max-w-3xl text-center">
-      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-white">
         {title}
       </h1>
       {subtitle && (
@@ -35,8 +42,6 @@ const { title, subtitle, conferenceName, date, primaryCtaUrl = '#', primaryCtaLa
         <div class="mt-10 flex justify-center">
           <a
             href={primaryCtaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             class="inline-flex items-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-via-navy shadow-sm transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {primaryCtaLabel}

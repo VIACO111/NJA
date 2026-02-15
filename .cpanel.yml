@@ -1,0 +1,11 @@
+# cPanel Git deployment — https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/
+# Account: wearevia — Home: /home/wearevia
+# DEPLOYPATH: subdomain opw.wearevia.co (use public_html/opw if subdomain docroot is that; else public_html/ for main domain)
+# Node.js must be available on the server (cPanel » Setup Node.js App).
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/wearevia/public_html/opw/
+    - npm ci
+    - npm run build
+    - /bin/cp -R dist/. $DEPLOYPATH

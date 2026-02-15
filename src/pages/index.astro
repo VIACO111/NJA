@@ -2,57 +2,87 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Abstract from '../components/Abstract.astro';
-import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+import EventDetails from '../components/EventDetails.astro';
+import Agenda from '../components/Agenda.astro';
+import OfferSection from '../components/OfferSection.astro';
 import SpeakerBio from '../components/SpeakerBio.astro';
+import ThankYouNJA from '../components/ThankYouNJA.astro';
+import VisitWebsite from '../components/VisitWebsite.astro';
 import Resources from '../components/Resources.astro';
 import Footer from '../components/Footer.astro';
 
 // Replace with your actual signup link (e.g. from QR code)
 const TRAINING_SIGNUP_URL = '#signup';
-const TEAM_PROGRAM_URL = 'https://www.wearevia.co';
+const TEAM_PROGRAM_PDF_URL = '/assets/Team Performance Program - We are VIA.pdf';
+const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
 ---
 
 <Layout
   title="NJA Meetup — Better decisions, better buy-in | VIA CO"
   description="Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite. At NJA Meetup, Sydney."
 >
-  <main>
+  <main class="relative bg-white">
+    <a
+      href="/docs/pamela-script"
+      class="absolute top-4 right-6 text-[10px] uppercase tracking-widest text-slate-400 hover:text-white transition-colors z-50"
+    >
+      pamela
+    </a>
     <Hero
       title="Better decisions. More buy-in from your C-suite."
       subtitle="Free training for P&C folks — understand how to improve the quality of decisions in your organisation and get your leaders to buy into the solutions you're proposing."
       conferenceName="NJA Meetup"
-      date="Sydney"
+      date="Sydney · Feb 2025"
       primaryCtaUrl={TRAINING_SIGNUP_URL}
       primaryCtaLabel="Sign up for free training (limited spots)"
+      backgroundImage="/via-assets/hero.png"
     />
+    
+    <EventDetails
+      onlineDate="Wednesday, 25th Feb"
+      onlineTime="1:00 PM (AEDT)"
+      inPersonDate="Wednesday, 25th Feb"
+      inPersonTime="6:00 PM (AEDT)"
+      location="Camperdown Commons"
+    />
+
+    <Agenda />
+
     <Abstract
       title="Why this matters"
-      content="<p>We've all heard about bridging the gap between C-suite and HR. What it really boils down to — the significance of better understanding and communication — is <strong>aligning the decisions being made in a business</strong>.</p><p>People are at the core of any business. You might have the best product, a well thought-out hierarchy, and great software to support your people. A lot of businesses have optimised everything leading up to people, but traditionally, this is where it stops.</p><p>We've been on a journey researching what goes on in people's minds, especially how they make decisions. We bring you real experience in <strong>improving the quality of the decisions</strong> you and everyone in your team makes — and we offer programs for pairs, teams, and entire organisations.</p>"
+      content="<p><strong>Business moves fast.</strong> So fast that often the <strong>real conversations</strong> get ignored because they take time and energy to address.</p><p>These missing conversations block the team and result in stagnation. They can hinder progress and become missed opportunities, because that friction is actually <strong>where creativity is supposed to flourish</strong>.</p><p>As an HR leader, you need to be versed in when to call these meetings, how to orchestrate them, and how to partner with external organisations to facilitate them. That is exactly what this training is about.</p>"
     />
-    <KeyTakeaways
-      title="What you'll get"
-      subtitle="Why join the free training"
-      items={[
-        'Why you\'re in the unique position to make the biggest difference: you see the challenges and probably know how to fix them — you need to bridge the gap to get leaders to buy in.',
-        'A practical way to have the strategic conversations that unblock teams: flow-state techniques, egos out of the room, key decisions before the pressure gets too high.',
-        'Free training (first come, first served) to understand how to improve decision quality in your organisation and get more buy-in from your C-suite.',
-      ]}
+
+
+
+    <OfferSection
+      pdfUrl={TEAM_PROGRAM_PDF_URL}
+      calendlyUrl={CALENDLY_URL}
+      imageUrl="/via-assets/workshop.jpg"
     />
+
     <SpeakerBio
       name="The VIA team"
-      title="Executive infrastructure &amp; strategic facilitation"
-      bio="We're experts in having the strategic conversations that unblock teams — using techniques like flow-state to get everyone at ease and the egos out of the room. We've worked with leaders at Cisco, Atlassian, Canva, and others. We design offsites and run programs for pairs, teams, and entire organisations. For P&C folks who want to run these conversations themselves, we've designed a one-of-a-kind training solution."
-      companyName="VIA CO"
-      companyUrl="https://www.wearevia.co"
+      title="Executive infrastructure & strategic facilitation"
+      bio="At VIA, we've conducted more than 50 workshops with various teams including Google, Cisco, and Atlassian. Jesus and Anastasiya have developed a systematic way to have these conversations by entering into flow state and leaving the ego behind. The result? Teams that are able to innovate, push through, and tackle blockages head-on, transforming them into opportunities."
     />
+    
+    <ThankYouNJA />
+    
+    <VisitWebsite />
+
     <Resources
-      title="Next steps"
+      title="Choose one of the following"
       resources={[
+        { title: 'Book Now', href: TRAINING_SIGNUP_URL, description: 'Use promo code NJAFREE to get in' },
         { title: 'Sign up for the free training', href: TRAINING_SIGNUP_URL, description: 'Limited to 10 spots · 2 groups · first come, first served' },
-        { title: 'Team program — offsites &amp; collective flow state', href: TEAM_PROGRAM_URL, description: '3 spots next quarter · transform your team\'s biggest challenges into lasting solutions' },
+        { title: 'Download Program PDF', href: TEAM_PROGRAM_PDF_URL, description: 'Get the full details on "The Way of Strength"' },
+        { title: 'Book a Strategy Call', href: CALENDLY_URL, description: 'Discuss your team\'s needs directly with us' },
         { title: 'Sydney Talent Meetup', href: 'https://www.meetup.com/en-AU/sydney-talent-meetup/', description: 'Join #NJAMeetup' },
       ]}
     />
+    
     <Footer
       socialLinks={[
         { label: 'Meetup', href: 'https://www.meetup.com/en-AU/sydney-talent-meetup/' },
