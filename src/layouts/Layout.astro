@@ -22,6 +22,11 @@ const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-white text-via-navy">
+    <header class="absolute top-0 left-0 w-full z-40 p-6">
+      <div class="mx-auto max-w-6xl">
+        <img src="/via-assets/logo-white.svg" alt="VIA CO" class="h-8 sm:h-10 opacity-90" />
+      </div>
+    </header>
     <slot />
   </body>
 </html>
