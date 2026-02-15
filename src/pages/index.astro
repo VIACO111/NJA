@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
 
 // Replace with your actual signup link (e.g. from QR code)
 const TRAINING_SIGNUP_URL = '#signup';
-const TEAM_PROGRAM_PDF_URL = `${import.meta.env.BASE_URL}assets/Team Performance Program - We are VIA.pdf`;
+const TEAM_PROGRAM_PDF_URL = `${import.meta.env.BASE_URL}/assets/Team Performance Program - We are VIA.pdf`;
 const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
 ---
 
@@ -24,7 +24,7 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
 >
   <main class="relative bg-white">
     <a
-      href={`${import.meta.env.BASE_URL}docs/pamela-script`}
+      href={`${import.meta.env.BASE_URL}/docs/pamela-script`}
       class="absolute top-4 right-6 text-[10px] uppercase tracking-widest text-slate-400 hover:text-white transition-colors z-50"
     >
       pamela
@@ -36,7 +36,7 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
       date="Sydney · Feb 2025"
       primaryCtaUrl={TRAINING_SIGNUP_URL}
       primaryCtaLabel="Sign up for free training (limited spots)"
-      backgroundImage={`${import.meta.env.BASE_URL}via-assets/hero.png`}
+      backgroundImage={`${import.meta.env.BASE_URL}/via-assets/hero.png`}
     />
     
     <EventDetails
@@ -59,7 +59,7 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
     <OfferSection
       pdfUrl={TEAM_PROGRAM_PDF_URL}
       calendlyUrl={CALENDLY_URL}
-      imageUrl={`${import.meta.env.BASE_URL}via-assets/workshop.jpg`}
+      imageUrl={`${import.meta.env.BASE_URL}/via-assets/workshop.jpg`}
     />
 
     <SpeakerBio
