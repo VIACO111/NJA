@@ -30,27 +30,7 @@ const { pdfUrl, calendlyUrl, imageUrl } = Astro.props;
             Gearing up for something bigger? We run an elite Team Performance Program in partnership with a stunning retreat centre in the Blue Mountains.
           </p>
 
-          <div class="mb-10 p-6 bg-white/5 rounded-xl border border-white/10">
-            <h3 class="text-xl font-semibold text-white mb-4">The Challenge for Teams</h3>
-            <p class="text-slate-300 mb-4 leading-relaxed">
-              The biggest downfall teams experience is an inability to transform problems into solutions. This blocks you from moving forward and results in many avoidable mistakes being made.
-            </p>
-            <p class="text-sm text-slate-400 mb-3 uppercase tracking-wider font-semibold">Common Symptoms Include:</p>
-            <ul class="space-y-4 text-slate-300">
-              <li class="flex items-start">
-                <span class="text-white mr-3 mt-1 text-xs">•</span>
-                <span><strong>Difficult conversations</strong> that are repeatedly put off or avoided (showing up as underlying friction in interactions)</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-white mr-3 mt-1 text-xs">•</span>
-                <span><strong>Complex problem solving</strong> attempted without sufficient time (leaving team members feeling powerless and frustrated)</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-white mr-3 mt-1 text-xs">•</span>
-                <span><strong>Resistance to change</strong> due to unresolved fears (often taking the form of passive-aggressive or dismissive comments like <span class="italic">"that's just the way we do things"</span>)</span>
-              </li>
-            </ul>
-          </div>
+
           
           <div class="flex items-center text-white mb-8">
             <span class="text-5xl font-bold text-white mr-4">30%</span>
@@ -96,8 +76,30 @@ const { pdfUrl, calendlyUrl, imageUrl } = Astro.props;
              <div class="absolute inset-0 bg-via-black"></div>
            )}
            
-           <div class="relative h-full flex items-center justify-center p-12 text-center z-10">
-             <blockquote class="text-xl font-medium text-white italic">
+           <div class="relative h-full flex flex-col items-center justify-center p-8 sm:p-12 text-center z-10 space-y-10">
+             <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 text-left max-w-md">
+               <h3 class="text-xl font-semibold text-white mb-4">The Challenge for Teams</h3>
+               <p class="text-slate-300 mb-4 text-sm leading-relaxed">
+                 The biggest downfall teams experience is an inability to transform problems into solutions. This blocks you from moving forward and results in many avoidable mistakes being made.
+               </p>
+               <p class="text-[10px] text-slate-400 mb-3 uppercase tracking-wider font-semibold">Common Symptoms Include:</p>
+               <ul class="space-y-3 text-slate-300 text-sm">
+                 <li class="flex items-start">
+                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
+                   <span><strong>Difficult conversations</strong> that are repeatedly put off or avoided</span>
+                 </li>
+                 <li class="flex items-start">
+                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
+                   <span><strong>Complex problem solving</strong> attempted without sufficient time</span>
+                 </li>
+                 <li class="flex items-start">
+                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
+                   <span><strong>Resistance to change</strong> due to unresolved fears</span>
+                 </li>
+               </ul>
+             </div>
+
+             <blockquote class="text-xl font-medium text-white italic max-w-md">
                "Reaching the subconscious beliefs that determine the behaviors you see in your teams every day."
              </blockquote>
            </div>

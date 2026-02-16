@@ -2,18 +2,18 @@
 ---
 <section class="w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
   <form 
-    action="https://formsubmit.co/founders@wearevia.co" 
+    action="https://api.web3forms.com/submit" 
     method="POST" 
     class="space-y-6"
   >
+    <!-- Web3Forms Access Key (Get one from https://web3forms.com/) -->
+    <input type="hidden" name="access_key" value="2711d818-2ece-4509-bc76-9c02582a13d6">
+
     <!-- Honeypot to prevent spam -->
-    <input type="text" name="_honey" style="display:none">
-    
-    <!-- Disable captcha if desired (easier for users) -->
-    <input type="hidden" name="_captcha" value="false">
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
     <!-- Redirect after success -->
-    <input type="hidden" name="_next" value="https://www.wearevia.co/RCTraining/thanks">
+    <input type="hidden" name="redirect" value="https://www.wearevia.co/RCTraining/thanks">
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="space-y-2">
@@ -68,14 +68,14 @@
     </div>
 
     <div class="space-y-2">
-      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Select Your Session</label>
+      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Select Your Session(s)</label>
       <div class="flex flex-col space-y-3">
         <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-          <input type="radio" name="session" value="online" required class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300">
+          <input type="checkbox" name="session_online" value="yes" class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
           <span class="ml-3 text-slate-700 font-medium">Online Training (Wed 25th Feb, 1PM AEDT)</span>
         </label>
         <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-          <input type="radio" name="session" value="in-person" required class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300">
+          <input type="checkbox" name="session_in_person" value="yes" class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
           <span class="ml-3 text-slate-700 font-medium">In-Person Q&A & Meetup (Wed 25th Feb, 6PM AEDT)</span>
         </label>
       </div>
@@ -87,10 +87,10 @@
         type="text" 
         id="promo" 
         name="promo_code" 
-        placeholder="e.g. NJAFREE"
+        placeholder="Enter code"
         class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
       >
-      <p class="text-xs text-slate-500 mt-1 italic">Note: Online session is free with code NJAFREE. Otherwise, a payment link follows.</p>
+      <p class="text-xs text-slate-500 mt-1 italic">Note: If applicable, a payment link will be sent to your email after registration.</p>
     </div>
 
     <button 
@@ -104,22 +104,5 @@
 </section>
 
 <script>
-  const form = document.querySelector('form');
-  const promoInput = document.getElementById('promo') as HTMLInputElement;
-  const sessionInputs = document.querySelectorAll('input[name="session"]');
-  const submitBtn = document.getElementById('submit-btn');
-
-  function updateStatus() {
-    const isOnline = (document.querySelector('input[name="session"]:checked') as HTMLInputElement)?.value === 'online';
-    const hasPromo = promoInput.value.trim().toUpperCase() === 'NJAFREE';
-
-    if (isOnline && !hasPromo) {
-      submitBtn.textContent = 'Continue to Payment (100 AUD)';
-    } else {
-      submitBtn.textContent = 'Register for Event';
-    }
-  }
-
-  promoInput?.addEventListener('input', updateStatus);
-  sessionInputs.forEach(input => input.addEventListener('change', updateStatus));
+  // Dynamic status update removed as per new simplified registration flow
 </script>
