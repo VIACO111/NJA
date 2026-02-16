@@ -3,15 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import SignupForm from '../components/SignupForm.astro';
 
 const WISE_PAYMENT_URL = 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
-const CALENDAR_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmRjODBtdnNkYzVhZG1odWl1OWthbDQ2bXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
+const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmRjODBtdnNkYzVhZG1odWl1OWthbDQ2bXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
+const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MWFwbDJmNmlkMnAzMTZtYjRjaTQ5YWozcXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
 ---
 
 <Layout 
-  title="Event Registration | VIA CO"
-  description="Sign up for the NJA Meetup training sessions. Join us online or in-person in Camperdown."
+  title="Register: Real Conversations | VIA CO"
+  description="Sign up for Real Conversations: Strategic Training for P&C Leaders. Available online and in-person."
 >
   <main class="pt-32 pb-24 bg-via-light min-h-screen">
-    <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-7xl px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         
         <!-- Left Column: Details -->
@@ -24,66 +25,116 @@ const CALENDAR_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE
               Back to main
             </a>
             <h1 class="font-montserrat font-black text-5xl sm:text-6xl text-via-black uppercase leading-[0.9] tracking-tighter">
-              Secure Your<br/>Spot.
+              Real<br/>Conversations.
             </h1>
-            <p class="mt-6 text-xl text-slate-600 leading-relaxed max-w-md">
-              Complete the form to register for either our online elite training or the in-person Q&A meetup.
+            <p class="mt-6 text-xl text-slate-600 leading-relaxed max-w-xl">
+              Strategic Training for P&C Leaders. Choose your session below and register to secure your spot.
             </p>
           </div>
 
-          <div class="space-y-8">
-            <div class="p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
-              <h2 class="text-xl font-bold text-via-black mb-4 flex items-center">
-                <span class="w-8 h-8 rounded-full bg-via-black text-white flex items-center justify-center text-sm mr-3">1</span>
-                Online Elite Training
-              </h2>
-              <p class="text-slate-600 mb-4">Master the tools of strategic facilitation from anywhere.</p>
-              <div class="flex items-center justify-between py-3 border-t border-slate-50">
-                <span class="text-sm font-semibold uppercase text-via-gray">Cost</span>
-                <span class="font-bold text-via-black">100 AUD</span>
+          <div class="space-y-12">
+            <!-- Online Training Section -->
+            <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-2xl font-bold text-via-black uppercase tracking-tight">
+                  1. Online Strategic Training
+                </h2>
+                <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded transition-colors group-hover:bg-via-gray">Online</span>
               </div>
-              <div class="flex items-center justify-between py-3 border-t border-slate-50">
-                <span class="text-sm font-semibold uppercase text-via-gray tracking-tight">NJA Attendee Promo</span>
-                <span class="font-bold text-via-black uppercase">FREE</span>
+              
+              <div class="text-sm space-y-2 text-via-gray font-medium uppercase tracking-wider">
+                <p>Location: Google Meet (Link provided upon registration)</p>
+                <p>Time: Wed, 25th Feb @ 1:00 PM (AEDT)</p>
+              </div>
+
+              <div class="prose prose-slate text-slate-600 max-w-none">
+                <p class="font-bold text-via-black">The most expensive mistake is the "conversation not had."</p>
+                <p>When we avoid friction, we block innovation. This training is designed specifically for HR professionals and Talent leaders who want to master strategic influence and high-stakes facilitation.</p>
+                
+                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">What we will cover:</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><strong>Building the Business Case:</strong> Learn to calculate the Cost of Inaction to make proposals undeniable.</li>
+                  <li><strong>The Physiology of Conflict:</strong> Manage the "gut response" that blocks progress.</li>
+                  <li><strong>The Practical Toolkit:</strong> Master the Reset, 3F Framework, and Emptying the Bottle.</li>
+                </ul>
+              </div>
+
+              <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
+                <div>
+                  <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">Registration Fee</p>
+                  <p class="text-xl font-black text-via-black">100 AUD <span class="text-sm font-normal text-slate-400">/ Free with code</span></p>
+                </div>
+                <a 
+                  href={CALENDAR_ONLINE_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline"
+                >
+                  <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Online Event to Calendar" class="h-6" />
+                </a>
               </div>
               <a 
                 href={WISE_PAYMENT_URL} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="mt-4 block text-center py-3 bg-via-light border border-slate-200 rounded-lg text-sm font-bold uppercase tracking-widest text-via-black hover:bg-slate-100 transition-colors"
+                class="block w-full text-center py-3 bg-via-light border border-slate-200 rounded-lg text-xs font-bold uppercase tracking-widest text-via-black hover:bg-slate-100 transition-colors"
               >
-                Pay via Wise (if no code)
+                Continue to Payment (100 AUD)
               </a>
             </div>
 
-            <div class="p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
-              <h2 class="text-xl font-bold text-via-black mb-4 flex items-center">
-                <span class="w-8 h-8 rounded-full bg-via-black text-white flex items-center justify-center text-sm mr-3">2</span>
-                In-Person Q&A
-              </h2>
-              <p class="text-slate-600 mb-4">Join us at Camperdown Commons for a live discussion and networking.</p>
-              <div class="flex items-center justify-between py-3 border-t border-slate-50">
-                <span class="text-sm font-semibold uppercase text-via-gray">Cost</span>
-                <span class="font-bold text-via-black uppercase">FREE</span>
+            <!-- In-Person Section -->
+            <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-2xl font-bold text-via-black uppercase tracking-tight">
+                  2. Live Q&A & Networking
+                </h2>
+                <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded">In-Person</span>
               </div>
-              <a 
-                href={CALENDAR_URL} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="mt-4 inline-flex items-center font-bold text-sm uppercase tracking-widest text-via-black hover:underline"
-              >
-                <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Google Calendar" class="mr-3" />
-                Add to your calendar
-              </a>
+
+              <div class="text-sm space-y-2 text-via-gray font-medium uppercase tracking-wider">
+                <p>Location: Camperdown Commons</p>
+                <p>Time: Wed, 25th Feb @ 5:30 PM (AEDT)</p>
+              </div>
+
+              <div class="prose prose-slate text-slate-600 max-w-none">
+                <p>Why do the most important conversations in our organisations often go unsaid? Join the VIA team for an evening of drinks, networking, and a "no-filter" Q&A.</p>
+                
+                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">We'll tackle your toughest questions:</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><strong>The Buy-In Battle:</strong> How to finally get the CEO to invest in team culture.</li>
+                  <li><strong>The Biology of Conflict:</strong> How to reset the room when a team shuts down.</li>
+                  <li><strong>Strategy Gap:</strong> Moving from ego-driven friction to a "flow state."</li>
+                </ul>
+              </div>
+
+              <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
+                <div>
+                  <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">Registration Fee</p>
+                  <p class="text-xl font-black text-via-black">FREE</p>
+                </div>
+                <a 
+                  href={CALENDAR_LIVE_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline"
+                >
+                  <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Live Event to Calendar" class="h-6" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Right Column: Form -->
-        <div>
+        <div class="sticky top-32">
+          <div class="bg-via-black text-white p-8 rounded-t-2xl">
+            <h3 class="font-montserrat font-bold text-2xl uppercase tracking-tight">Complete Registration</h3>
+            <p class="mt-2 text-slate-400 text-sm">Secure your place for either or both sessions.</p>
+          </div>
           <SignupForm />
           <p class="mt-8 text-center text-sm text-slate-500">
-            By registering, you agree to our privacy policy and will receive event details via email.
+            By registering, you agree to our privacy policy. We will send you the Google Meet link or venue details via email.
           </p>
         </div>
 
