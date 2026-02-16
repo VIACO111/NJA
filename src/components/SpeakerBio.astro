@@ -14,7 +14,7 @@ const { name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevi
 
 <section class="bg-white py-20 sm:py-28">
   <div class="mx-auto max-w-5xl px-6">
-    <h2 class="text-2xl font-semibold tracking-tight text-via-navy sm:text-3xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-via-black sm:text-3xl">
       Speaker
     </h2>
     <div class="mt-12 flex flex-col gap-12 sm:flex-row sm:items-start">
@@ -23,13 +23,13 @@ const { name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevi
           <img
             src={imageSrc}
             alt={imageAlt}
-            class="h-48 w-48 rounded-2xl object-cover shadow-lg sm:h-56 sm:w-56"
+            class="h-48 w-48 rounded-2xl object-cover shadow-lg grayscale sm:h-56 sm:w-56"
             width="224"
             height="224"
           />
         ) : (
           <div
-            class="flex h-48 w-48 items-center justify-center rounded-2xl bg-slate-200 text-slate-400 sm:h-56 sm:w-56"
+            class="flex h-48 w-48 items-center justify-center rounded-2xl bg-via-light text-slate-400 sm:h-56 sm:w-56"
             aria-hidden="true"
           >
             <span class="text-sm font-medium">Headshot</span>
@@ -37,9 +37,9 @@ const { name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevi
         )}
       </div>
       <div class="min-w-0 flex-1 sm:order-1">
-        <h3 class="text-xl font-semibold text-via-navy">{name}</h3>
+        <h3 class="text-xl font-semibold text-via-black">{name}</h3>
         {title && (
-          <p class="mt-1 text-base text-via-navy-muted">{title}</p>
+          <p class="mt-1 text-base text-via-gray">{title}</p>
         )}
         {companyName && (
           <p class="mt-2">
@@ -47,7 +47,7 @@ const { name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevi
               href={companyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-base font-medium text-via-navy underline decoration-via-navy-muted/50 underline-offset-2 hover:decoration-via-navy"
+              class="text-base font-medium text-via-black underline decoration-slate-300 underline-offset-2 hover:decoration-via-black"
             >
               {companyName}
             </a>

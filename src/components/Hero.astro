@@ -13,11 +13,11 @@ interface Props {
 const { title, subtitle, conferenceName, date, primaryCtaUrl = '#', primaryCtaLabel = 'Sign up', backgroundImage } = Astro.props;
 ---
 
-<section class="relative bg-via-navy text-white overflow-hidden">
+<section class="relative bg-via-black text-white overflow-hidden">
   {backgroundImage && (
     <div class="absolute inset-0 z-0">
-      <img src={backgroundImage} alt="" class="w-full h-full object-cover opacity-20" />
-      <div class="absolute inset-0 bg-gradient-to-t from-via-navy via-via-navy/80 to-transparent"></div>
+      <img src={backgroundImage} alt="" class="w-full h-full object-cover opacity-20 grayscale" />
+      <div class="absolute inset-0 bg-gradient-to-t from-via-black via-via-black/80 to-transparent"></div>
     </div>
   )}
 
@@ -42,7 +42,7 @@ const { title, subtitle, conferenceName, date, primaryCtaUrl = '#', primaryCtaLa
         <div class="mt-10 flex justify-center">
           <a
             href={primaryCtaUrl}
-            class="inline-flex items-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-via-navy shadow-sm transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            class="inline-flex items-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-via-black shadow-sm transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {primaryCtaLabel}
           </a>

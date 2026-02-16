@@ -5,13 +5,15 @@ export default {
     extend: {
       colors: {
         via: {
-          navy: '#0f172a',
-          'navy-light': '#1e293b',
-          'navy-muted': '#334155',
+          black: '#000000',
+          dark: '#111111',
+          gray: '#333333',
+          light: '#f8f8f8',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        montserrat: ['Montserrat', 'Inter', 'sans-serif'],
       },
     },
   },

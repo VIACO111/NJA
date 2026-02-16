@@ -1,0 +1,125 @@
+---
+---
+<section class="w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
+  <form 
+    action="https://formsubmit.co/founders@wearevia.co" 
+    method="POST" 
+    class="space-y-6"
+  >
+    <!-- Honeypot to prevent spam -->
+    <input type="text" name="_honey" style="display:none">
+    
+    <!-- Disable captcha if desired (easier for users) -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    <!-- Redirect after success -->
+    <input type="hidden" name="_next" value="https://www.wearevia.co/RCTraining/thanks">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label for="name" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Full Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required 
+          placeholder="Jane Doe"
+          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
+        >
+      </div>
+      
+      <div class="space-y-2">
+        <label for="email" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          placeholder="jane@organization.co"
+          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
+        >
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label for="org" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Organization</label>
+        <input 
+          type="text" 
+          id="org" 
+          name="organization" 
+          required 
+          placeholder="Company Name"
+          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
+        >
+      </div>
+      
+      <div class="space-y-2">
+        <label for="role" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Role / Title</label>
+        <input 
+          type="text" 
+          id="role" 
+          name="role" 
+          required 
+          placeholder="e.g. Head of Talent"
+          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
+        >
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Select Your Session</label>
+      <div class="flex flex-col space-y-3">
+        <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+          <input type="radio" name="session" value="online" required class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300">
+          <span class="ml-3 text-slate-700 font-medium">Online Training (Wed 25th Feb, 1PM AEDT)</span>
+        </label>
+        <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+          <input type="radio" name="session" value="in-person" required class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300">
+          <span class="ml-3 text-slate-700 font-medium">In-Person Q&A & Meetup (Wed 25th Feb, 6PM AEDT)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label for="promo" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Promo Code (Optional)</label>
+      <input 
+        type="text" 
+        id="promo" 
+        name="promo_code" 
+        placeholder="e.g. NJAFREE"
+        class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
+      >
+      <p class="text-xs text-slate-500 mt-1 italic">Note: Online session is free with code NJAFREE. Otherwise, a payment link follows.</p>
+    </div>
+
+    <button 
+      type="submit" 
+      id="submit-btn"
+      class="w-full bg-via-black text-white py-4 px-6 rounded-lg font-bold text-lg uppercase tracking-widest hover:bg-via-gray transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+    >
+      Register for Event
+    </button>
+  </form>
+</section>
+
+<script>
+  const form = document.querySelector('form');
+  const promoInput = document.getElementById('promo') as HTMLInputElement;
+  const sessionInputs = document.querySelectorAll('input[name="session"]');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function updateStatus() {
+    const isOnline = (document.querySelector('input[name="session"]:checked') as HTMLInputElement)?.value === 'online';
+    const hasPromo = promoInput.value.trim().toUpperCase() === 'NJAFREE';
+
+    if (isOnline && !hasPromo) {
+      submitBtn.textContent = 'Continue to Payment (100 AUD)';
+    } else {
+      submitBtn.textContent = 'Register for Event';
+    }
+  }
+
+  promoInput?.addEventListener('input', updateStatus);
+  sessionInputs.forEach(input => input.addEventListener('change', updateStatus));
+</script>
