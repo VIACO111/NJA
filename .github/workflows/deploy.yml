@@ -34,4 +34,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }} # Matches the Secret Name
         local-dir: ./dist/
         server-dir: public_html/RCTraining/
-        security: true
+        security: strict
