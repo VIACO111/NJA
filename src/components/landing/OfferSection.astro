@@ -13,7 +13,7 @@ interface Props {
   description?: string;
   discountPercent?: string;
   discountTitle?: string;
-  discountSubtitle?: string;
+
   pdfButtonLabel?: string;
   calendlyButtonLabel?: string;
   footnote?: string;
@@ -33,7 +33,7 @@ const {
   description,
   discountPercent = "30%",
   discountTitle = "OFF Team Performance Program",
-  discountSubtitle,
+
   pdfButtonLabel = "Download Program PDF",
   calendlyButtonLabel = "Book a Strategy Call",
   footnote,
@@ -72,7 +72,6 @@ const {
             <span class="text-5xl font-bold text-white mr-4">{discountPercent}</span>
             <div class="flex flex-col">
               <span class="text-lg font-semibold uppercase tracking-wider">{discountTitle}</span>
-              <span class="text-sm text-slate-400">{discountSubtitle}</span>
             </div>
           </div>
 
@@ -98,7 +97,7 @@ const {
             </a>
           </div>
           {footnote && (
-            <p class="mt-4 text-sm text-slate-400">
+            <p class="mt-4 text-sm text-slate-400 italic">
               {footnote}
             </p>
           )}
