@@ -4,7 +4,7 @@ import SignupForm from '../components/signup/SignupForm.astro';
 
 const BASE = import.meta.env.BASE_URL;
 const WISE_PAYMENT_URL = 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
-const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmRjODBtdnNkYzVhZG1odWl1OWthbDQ2bXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
+const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MG5saGxlZHMwYnZwMDNwYjVwMXN1N2QzYnQgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
 
 // ——— Page meta ———
 const PAGE_TITLE = "Register: Real Conversations | VIA CO";
@@ -31,7 +31,7 @@ const COVER_ITEMS: { label: string; text: string }[] = [
 ];
 const FEE_LABEL = "Registration Fee";
 const FEE_AMOUNT = "100 AUD";
-const FEE_NOTE = "/ Free with code";
+const FEE_NOTE = "";
 const CALENDAR_CTA = "Add to Calendar (image link)";
 const PAYMENT_CTA = "Continue to Payment (100 AUD)";
 
@@ -44,14 +44,14 @@ const FORM_FOOTER = "By registering, you agree to our privacy policy. We will se
 const FORM_LABELS = {
   fullName: "Full Name",
   email: "Email Address",
-  organization: "Organization",
+  organization: "Organisation",
   role: "Role / Title",
   session: "Session",
   sessionOption: "Online Training (Thu 26th Feb, 1PM AEDT)",
   promoLabel: "Promo Code (Optional)",
-  promoPlaceholder: "Enter code (or leave blank to pay $100)",
+  promoPlaceholder: "",
   promoError: "Invalid promo code. Please enter a valid code or complete payment.",
-  promoHint: "Enter a valid promo code for free registration, or leave blank to pay $100.",
+  promoHint: "",
   submitButton: "Register for Event",
   modalTitle: "Complete Payment",
   modalBody: "Please complete payment to proceed with registration. After payment, you can return to complete the form.",
