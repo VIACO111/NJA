@@ -5,9 +5,18 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  /** Open Graph title (defaults to title) */
+  ogTitle?: string;
+  /** Open Graph description (defaults to description) */
+  ogDescription?: string;
+  /** Image path under public/ (e.g. via-assets/Snippet.png). Resolved to absolute URL for og:image. */
+  ogImage?: string;
 }
 
-const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
+const { title, description = 'NJA Meetup · VIA CO', ogTitle, ogDescription, ogImage } = Astro.props;
+const site = import.meta.env.SITE ?? '';
+const base = import.meta.env.BASE_URL ?? '/';
+const absoluteImageUrl = ogImage ? new URL(base + ogImage.replace(/^\//, ''), site).href : null;
 ---
 
 <!doctype html>
@@ -16,6 +25,10 @@ const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <!-- Open Graph (e.g. LinkedIn) -->
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    {absoluteImageUrl && <meta property="og:image" content={absoluteImageUrl} />}
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/via-assets/${encodeURI('VIA Logo Black Fill.svg')}`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
