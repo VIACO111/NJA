@@ -23,9 +23,17 @@ const HERO_SUBTITLE = "Driving tough conversations with your team";
 const HERO_BODY = "A strategic training for P&C Leaders to understand the physiology of conflict, the cost of avoiding it, and how to build a compelling business case that will get your C-suite excited and on-board.";
 
 // ——— Open Graph / LinkedIn preview (matches hero) ———
+const SITE = import.meta.env.SITE ?? 'https://www.wearevia.co';
+const BASE_PATH = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '') || '';
+const OG_URL = `${SITE}${BASE_PATH}/`;
 const OG_IMAGE = "via-assets/Snippet.png";
+const OG_IMAGE_WIDTH = 1888;
+const OG_IMAGE_HEIGHT = 982;
+const OG_IMAGE_TYPE = "image/png";
 const OG_TITLE = HERO_TITLE;
 const OG_DESCRIPTION = `${HERO_SUBTITLE} ${HERO_BODY}`;
+const OG_SITE_NAME = "VIA CO";
+const OG_AUTHOR = "Jesus and Anastasiya";
 
 // ——— Abstract / Why this matters ———
 const ABSTRACT_TITLE = "Why this matters?";
@@ -94,7 +102,8 @@ const OFFER_TITLE = "Team Performance Program";
 const OFFER_DESCRIPTION = "Gearing up for something bigger? We run an elite Team Performance Program in partnership with a stunning retreat centre in the Blue Mountains.";
 const OFFER_DISCOUNT_PERCENT = "30%";
 const OFFER_DISCOUNT_TITLE = "off";
-const OFFER_DISCOUNT_SUBLINE = "Or up to $25,000 for P&C professionals, 2 spots left.";
+const OFFER_DISCOUNT_SUBLINE = "Or up to $25,000 for P&C professionals.";
+const OFFER_URGENCY_BADGE = "2 spots left";
 const OFFER_PDF_BUTTON = "Download Program PDF";
 const OFFER_CALENDLY_BUTTON = "Book a Discovery Call";
 const OFFER_FOOTNOTE = "For HR professionals and leaders looking to tackle team performance head-on.";
@@ -119,7 +128,19 @@ const RESOURCES_LIST = [
 ];
 ---
 
-<Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION} ogTitle={OG_TITLE} ogDescription={OG_DESCRIPTION} ogImage={OG_IMAGE}>
+<Layout
+  title={PAGE_TITLE}
+  description={PAGE_DESCRIPTION}
+  ogUrl={OG_URL}
+  ogTitle={OG_TITLE}
+  ogDescription={OG_DESCRIPTION}
+  ogImage={OG_IMAGE}
+  ogImageWidth={OG_IMAGE_WIDTH}
+  ogImageHeight={OG_IMAGE_HEIGHT}
+  ogImageType={OG_IMAGE_TYPE}
+  ogSiteName={OG_SITE_NAME}
+  ogAuthor={OG_AUTHOR}
+>
   <main class="relative bg-white">
     <Hero
       title={HERO_TITLE}
@@ -169,6 +190,7 @@ const RESOURCES_LIST = [
       discountPercent={OFFER_DISCOUNT_PERCENT}
       discountTitle={OFFER_DISCOUNT_TITLE}
       discountSubline={OFFER_DISCOUNT_SUBLINE}
+      urgencyBadge={OFFER_URGENCY_BADGE}
       pdfButtonLabel={OFFER_PDF_BUTTON}
       calendlyButtonLabel={OFFER_CALENDLY_BUTTON}
       footnote={OFFER_FOOTNOTE}
