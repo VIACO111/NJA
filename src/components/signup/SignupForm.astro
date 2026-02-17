@@ -1,4 +1,43 @@
 ---
+export interface SignupFormLabels {
+  fullName: string;
+  email: string;
+  organization: string;
+  role: string;
+  session: string;
+  sessionOption: string;
+  promoLabel: string;
+  promoPlaceholder: string;
+  promoError: string;
+  promoHint: string;
+  submitButton: string;
+  modalTitle: string;
+  modalBody: string;
+  modalButton: string;
+}
+
+const DEFAULT_LABELS: SignupFormLabels = {
+  fullName: "Full Name",
+  email: "Email Address",
+  organization: "Organization",
+  role: "Role / Title",
+  session: "Session",
+  sessionOption: "Online Training (Wed 25th Feb, 1PM AEDT)",
+  promoLabel: "Promo Code (Optional)",
+  promoPlaceholder: "Enter code (or leave blank to pay $100)",
+  promoError: "Invalid promo code. Please enter a valid code or complete payment.",
+  promoHint: "Enter a valid promo code for free registration, or leave blank to pay $100.",
+  submitButton: "Register for Event",
+  modalTitle: "Complete Payment",
+  modalBody: "Please complete payment to proceed with registration. After payment, you can return to complete the form.",
+  modalButton: "I've Completed Payment",
+};
+
+interface Props {
+  labels?: Partial<SignupFormLabels>;
+}
+
+const L = { ...DEFAULT_LABELS, ...Astro.props.labels };
 ---
 <section class="w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
   <form 
@@ -6,126 +45,69 @@
     method="POST" 
     class="space-y-6"
   >
-    <!-- Web3Forms Access Key (Get one from https://web3forms.com/) -->
     <input type="hidden" name="access_key" value="2711d818-2ece-4509-bc76-9c02582a13d6">
-
-    <!-- Honeypot to prevent spam -->
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-    
-    <!-- Redirect after success -->
     <input type="hidden" name="redirect" value="https://www.wearevia.co/RCTraining/thanks">
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="space-y-2">
-        <label for="name" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Full Name</label>
-        <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          required 
-          placeholder="Jane Doe"
-          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
-        >
+        <label for="name" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.fullName}</label>
+        <input type="text" id="name" name="name" required placeholder="Jane Doe" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
       </div>
-      
       <div class="space-y-2">
-        <label for="email" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Email Address</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          required 
-          placeholder="jane@organization.co"
-          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
-        >
+        <label for="email" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.email}</label>
+        <input type="email" id="email" name="email" required placeholder="jane@organization.co" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="space-y-2">
-        <label for="org" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Organization</label>
-        <input 
-          type="text" 
-          id="org" 
-          name="organization" 
-          required 
-          placeholder="Company Name"
-          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
-        >
+        <label for="org" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.organization}</label>
+        <input type="text" id="org" name="organization" required placeholder="Company Name" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
       </div>
-      
       <div class="space-y-2">
-        <label for="role" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Role / Title</label>
-        <input 
-          type="text" 
-          id="role" 
-          name="role" 
-          required 
-          placeholder="e.g. Head of Talent"
-          class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
-        >
+        <label for="role" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.role}</label>
+        <input type="text" id="role" name="role" required placeholder="e.g. Head of Talent" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
       </div>
     </div>
 
     <div class="space-y-2">
-      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Session</label>
+      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.session}</label>
       <div class="flex flex-col space-y-3">
         <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
           <input type="checkbox" name="session_online" value="yes" checked class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
-          <span class="ml-3 text-slate-700 font-medium">Online Training (Wed 25th Feb, 1PM AEDT)</span>
+          <span class="ml-3 text-slate-700 font-medium">{L.sessionOption}</span>
         </label>
       </div>
     </div>
 
     <div class="space-y-2">
-      <label for="promo" class="block text-sm font-semibold text-via-black uppercase tracking-wider">Promo Code (Optional)</label>
-      <input 
-        type="text" 
-        id="promo" 
-        name="promo_code" 
-        placeholder="Enter code (or leave blank to pay $100)"
-        class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
-      >
-      <p id="promo-error" class="text-xs text-red-600 mt-1 hidden">Invalid promo code. Please enter a valid code or complete payment.</p>
-      <p class="text-xs text-slate-500 mt-1 italic">Enter a valid promo code for free registration, or leave blank to pay $100.</p>
+      <label for="promo" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.promoLabel}</label>
+      <input type="text" id="promo" name="promo_code" placeholder={L.promoPlaceholder} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
+      <p id="promo-error" class="text-xs text-red-600 mt-1 hidden">{L.promoError}</p>
+      <p class="text-xs text-slate-500 mt-1 italic">{L.promoHint}</p>
     </div>
 
-    <button 
-      type="submit" 
-      id="submit-btn"
-      class="w-full bg-via-black text-white py-4 px-6 rounded-lg font-bold text-lg uppercase tracking-widest hover:bg-via-gray transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
-    >
-      Register for Event
+    <button type="submit" id="submit-btn" class="w-full bg-via-black text-white py-4 px-6 rounded-lg font-bold text-lg uppercase tracking-widest hover:bg-via-gray transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">
+      {L.submitButton}
     </button>
   </form>
 
-  <!-- Payment Modal -->
   <div id="payment-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-      <!-- Background overlay -->
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" id="payment-overlay"></div>
-
-      <!-- Modal panel -->
       <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold text-via-black uppercase tracking-tight" id="modal-title">
-              Complete Payment
-            </h3>
-            <button
-              type="button"
-              id="close-payment-modal"
-              class="text-slate-400 hover:text-slate-600 transition-colors"
-            >
+            <h3 class="text-lg font-bold text-via-black uppercase tracking-tight" id="modal-title">{L.modalTitle}</h3>
+            <button type="button" id="close-payment-modal" class="text-slate-400 hover:text-slate-600 transition-colors">
               <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           <div class="mt-4">
-            <p class="text-sm text-slate-600 mb-4">
-              Please complete payment to proceed with registration. After payment, you can return to complete the form.
-            </p>
+            <p class="text-sm text-slate-600 mb-4">{L.modalBody}</p>
             <div class="border border-slate-200 rounded-lg overflow-hidden" style="height: 600px;">
               <iframe
                 id="payment-iframe"
@@ -136,12 +118,8 @@
               ></iframe>
             </div>
             <div class="mt-4 flex justify-end">
-              <button
-                type="button"
-                id="payment-complete-btn"
-                class="px-4 py-2 bg-via-black text-white text-sm font-semibold uppercase tracking-wider rounded-lg hover:bg-via-gray transition-colors"
-              >
-                I've Completed Payment
+              <button type="button" id="payment-complete-btn" class="px-4 py-2 bg-via-black text-white text-sm font-semibold uppercase tracking-wider rounded-lg hover:bg-via-gray transition-colors">
+                {L.modalButton}
               </button>
             </div>
           </div>

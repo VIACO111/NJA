@@ -7,10 +7,11 @@ interface Resource {
 
 interface Props {
   title?: string;
+  subtitle?: string;
   resources: Resource[];
 }
 
-const { title = 'Resources', resources } = Astro.props;
+const { title = 'Resources', subtitle, resources } = Astro.props;
 ---
 
 <section class="bg-white py-20 sm:py-28">
@@ -18,9 +19,11 @@ const { title = 'Resources', resources } = Astro.props;
     <h2 class="text-2xl font-semibold tracking-tight text-via-black sm:text-3xl">
       {title}
     </h2>
-    <p class="mt-4 text-slate-600">
-      Secure your spot for the training, explore the team program, or join the community.
-    </p>
+    {subtitle && (
+      <p class="mt-4 text-slate-600">
+        {subtitle}
+      </p>
+    )}
     <ul class="mt-10 space-y-4">
       {resources.map((r) => (
         <li>

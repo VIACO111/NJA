@@ -2,100 +2,129 @@
 import Layout from '../layouts/Layout.astro';
 import SignupForm from '../components/signup/SignupForm.astro';
 
+const BASE = import.meta.env.BASE_URL;
 const WISE_PAYMENT_URL = 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
 const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmRjODBtdnNkYzVhZG1odWl1OWthbDQ2bXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
+
+// ——— Page meta ———
+const PAGE_TITLE = "Register: Real Conversations | VIA CO";
+const PAGE_DESCRIPTION = "Sign up for Real Conversations: Strategic Training for P&C Leaders. Online training session.";
+
+// ——— Main page copy ———
+const BACK_LABEL = "Back to main";
+const MAIN_HEADING_LINE1 = "Real";
+const MAIN_HEADING_LINE2 = "Conversations.";
+const INTRO_PARAGRAPH = "Strategic Training for P&C Leaders. Register below to secure your spot.";
+
+// ——— Training block ———
+const TRAINING_TITLE = "Online Strategic Training";
+const TRAINING_BADGE = "Online";
+const LOCATION_LABEL = "Location: Google Meet (Link provided upon registration)";
+const TIME_LABEL = "Time: Wed, 25th Feb @ 1:00 PM (AEDT)";
+const TRAINING_LEAD = "The most expensive mistake is the \"conversation not had.\"";
+const TRAINING_BODY = "When we avoid friction, we block innovation. This training is designed specifically for HR professionals and Talent leaders who want to master strategic influence and high-stakes facilitation.";
+const WHAT_WE_COVER_TITLE = "What we will cover:";
+const COVER_ITEMS: { label: string; text: string }[] = [
+  { label: "Building the Business Case", text: "Learn to calculate the Cost of Inaction to make proposals undeniable." },
+  { label: "The Physiology of Conflict", text: "Manage the \"gut response\" that blocks progress." },
+  { label: "The Practical Toolkit", text: "Master the Reset, 3F Framework, and Emptying the Bottle." },
+];
+const FEE_LABEL = "Registration Fee";
+const FEE_AMOUNT = "100 AUD";
+const FEE_NOTE = "/ Free with code";
+const CALENDAR_CTA = "Add to Calendar (image link)";
+const PAYMENT_CTA = "Continue to Payment (100 AUD)";
+
+// ——— Form column ———
+const FORM_HEADING = "Complete Registration";
+const FORM_SUBHEADING = "Secure your place for the training session.";
+const FORM_FOOTER = "By registering, you agree to our privacy policy. We will send you the Google Meet link via email.";
+
+// ——— Form labels (passed to SignupForm) ———
+const FORM_LABELS = {
+  fullName: "Full Name",
+  email: "Email Address",
+  organization: "Organization",
+  role: "Role / Title",
+  session: "Session",
+  sessionOption: "Online Training (Wed 25th Feb, 1PM AEDT)",
+  promoLabel: "Promo Code (Optional)",
+  promoPlaceholder: "Enter code (or leave blank to pay $100)",
+  promoError: "Invalid promo code. Please enter a valid code or complete payment.",
+  promoHint: "Enter a valid promo code for free registration, or leave blank to pay $100.",
+  submitButton: "Register for Event",
+  modalTitle: "Complete Payment",
+  modalBody: "Please complete payment to proceed with registration. After payment, you can return to complete the form.",
+  modalButton: "I've Completed Payment",
+};
 ---
 
-<Layout 
-  title="Register: Real Conversations | VIA CO"
-  description="Sign up for Real Conversations: Strategic Training for P&C Leaders. Online training session."
->
+<Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
   <main class="pt-32 pb-24 bg-via-light min-h-screen">
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        
-        <!-- Left Column: Details -->
         <div class="space-y-12">
           <div>
-            <a href={`${import.meta.env.BASE_URL}/`} class="text-sm font-semibold uppercase tracking-widest text-via-gray hover:text-via-black transition-colors flex items-center mb-8">
+            <a href={`${BASE}/`} class="text-sm font-semibold uppercase tracking-widest text-via-gray hover:text-via-black transition-colors flex items-center mb-8">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
               </svg>
-              Back to main
+              {BACK_LABEL}
             </a>
             <h1 class="font-montserrat font-black text-5xl sm:text-6xl text-via-black uppercase leading-[0.9] tracking-tighter">
-              Real<br/>Conversations.
+              {MAIN_HEADING_LINE1}<br />{MAIN_HEADING_LINE2}
             </h1>
             <p class="mt-6 text-xl text-slate-600 leading-relaxed max-w-xl">
-              Strategic Training for P&C Leaders. Register below to secure your spot.
+              {INTRO_PARAGRAPH}
             </p>
           </div>
 
           <div class="space-y-12">
-            <!-- Online Training Section -->
             <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-6">
               <div class="flex items-start justify-between">
                 <h2 class="text-2xl font-bold text-via-black uppercase tracking-tight">
-                  Online Strategic Training
+                  {TRAINING_TITLE}
                 </h2>
-                <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded transition-colors group-hover:bg-via-gray">Online</span>
+                <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded transition-colors group-hover:bg-via-gray">{TRAINING_BADGE}</span>
               </div>
-              
               <div class="text-sm space-y-2 text-via-gray font-medium uppercase tracking-wider">
-                <p>Location: Google Meet (Link provided upon registration)</p>
-                <p>Time: Wed, 25th Feb @ 1:00 PM (AEDT)</p>
+                <p>{LOCATION_LABEL}</p>
+                <p>{TIME_LABEL}</p>
               </div>
-
               <div class="prose prose-slate text-slate-600 max-w-none">
-                <p class="font-bold text-via-black">The most expensive mistake is the "conversation not had."</p>
-                <p>When we avoid friction, we block innovation. This training is designed specifically for HR professionals and Talent leaders who want to master strategic influence and high-stakes facilitation.</p>
-                
-                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">What we will cover:</h4>
+                <p class="font-bold text-via-black">{TRAINING_LEAD}</p>
+                <p>{TRAINING_BODY}</p>
+                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">{WHAT_WE_COVER_TITLE}</h4>
                 <ul class="space-y-2 text-sm">
-                  <li><strong>Building the Business Case:</strong> Learn to calculate the Cost of Inaction to make proposals undeniable.</li>
-                  <li><strong>The Physiology of Conflict:</strong> Manage the "gut response" that blocks progress.</li>
-                  <li><strong>The Practical Toolkit:</strong> Master the Reset, 3F Framework, and Emptying the Bottle.</li>
+                  {COVER_ITEMS.map((item) => <li><strong>{item.label}:</strong> {item.text}</li>)}
                 </ul>
               </div>
-
               <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
                 <div>
-                  <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">Registration Fee</p>
-                  <p class="text-xl font-black text-via-black">100 AUD <span class="text-sm font-normal text-slate-400">/ Free with code</span></p>
+                  <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">{FEE_LABEL}</p>
+                  <p class="text-xl font-black text-via-black">{FEE_AMOUNT} <span class="text-sm font-normal text-slate-400">{FEE_NOTE}</span></p>
                 </div>
-                <a 
-                  href={CALENDAR_ONLINE_URL} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline"
-                >
+                <a href={CALENDAR_ONLINE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline">
                   <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Online Event to Calendar" class="h-6" />
                 </a>
               </div>
-              <a 
-                href={WISE_PAYMENT_URL} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="block w-full text-center py-3 bg-via-light border border-slate-200 rounded-lg text-xs font-bold uppercase tracking-widest text-via-black hover:bg-slate-100 transition-colors"
-              >
-                Continue to Payment (100 AUD)
+              <a href={WISE_PAYMENT_URL} target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 bg-via-light border border-slate-200 rounded-lg text-xs font-bold uppercase tracking-widest text-via-black hover:bg-slate-100 transition-colors">
+                {PAYMENT_CTA}
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Form -->
         <div class="sticky top-32">
           <div class="bg-via-black text-white p-8 rounded-t-2xl">
-            <h3 class="font-montserrat font-bold text-2xl uppercase tracking-tight">Complete Registration</h3>
-            <p class="mt-2 text-slate-400 text-sm">Secure your place for the training session.</p>
+            <h3 class="font-montserrat font-bold text-2xl uppercase tracking-tight">{FORM_HEADING}</h3>
+            <p class="mt-2 text-slate-400 text-sm">{FORM_SUBHEADING}</p>
           </div>
-          <SignupForm />
+          <SignupForm labels={FORM_LABELS} />
           <p class="mt-8 text-center text-sm text-slate-500">
-            By registering, you agree to our privacy policy. We will send you the Google Meet link via email.
+            {FORM_FOOTER}
           </p>
         </div>
-
       </div>
     </div>
   </main>

@@ -1,47 +1,83 @@
 ---
+export interface OfferSymptom {
+  title: string;
+  text: string;
+}
+
 interface Props {
   pdfUrl: string;
   calendlyUrl: string;
   imageUrl?: string;
+  badgeLabel?: string;
+  title?: string;
+  description?: string;
+  discountPercent?: string;
+  discountTitle?: string;
+  discountSubtitle?: string;
+  pdfButtonLabel?: string;
+  calendlyButtonLabel?: string;
+  footnote?: string;
+  challengeTitle?: string;
+  challengeDescription?: string;
+  symptomsLabel?: string;
+  symptoms?: OfferSymptom[];
+  quote?: string;
 }
 
-const { pdfUrl, calendlyUrl, imageUrl } = Astro.props;
+const {
+  pdfUrl,
+  calendlyUrl,
+  imageUrl,
+  badgeLabel = "Exclusive Offer",
+  title = "The 'Way of Strength' Program",
+  description,
+  discountPercent = "30%",
+  discountTitle = "OFF Team Performance Program",
+  discountSubtitle = "Valid if you hire us for external help",
+  pdfButtonLabel = "Download Program PDF",
+  calendlyButtonLabel = "Book a Strategy Call",
+  footnote,
+  challengeTitle = "The Challenge for Teams",
+  challengeDescription,
+  symptomsLabel = "Common Symptoms Include:",
+  symptoms = [],
+  quote,
+} = Astro.props;
 ---
 
 <section class="py-24 bg-white overflow-hidden relative">
-  <!-- Decorative background -->
   <div class="absolute inset-0 bg-via-light opacity-50"></div>
-  
+
   <div class="relative mx-auto max-w-6xl px-6">
     <div class="bg-via-black rounded-3xl overflow-hidden shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-2">
         <div class="p-10 sm:p-14 lg:p-16 flex flex-col justify-center">
           <div class="inline-flex items-center space-x-2 mb-6">
             <span class="px-3 py-1 rounded-full bg-white/10 text-white text-sm font-medium border border-white/20">
-              Exclusive Offer
+              {badgeLabel}
             </span>
           </div>
-          
+
           <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-            The 'Way of Strength' Program
+            {title}
           </h2>
-          
-          <p class="text-lg text-slate-300 mb-8 leading-relaxed">
-            Gearing up for something bigger? We run an elite Team Performance Program in partnership with a stunning retreat centre in the Blue Mountains.
-          </p>
 
+          {description && (
+            <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+              {description}
+            </p>
+          )}
 
-          
           <div class="flex items-center text-white mb-8">
-            <span class="text-5xl font-bold text-white mr-4">30%</span>
+            <span class="text-5xl font-bold text-white mr-4">{discountPercent}</span>
             <div class="flex flex-col">
-              <span class="text-lg font-semibold uppercase tracking-wider">OFF Team Performance Program</span>
-              <span class="text-sm text-slate-400">Valid if you hire us for external help</span>
+              <span class="text-lg font-semibold uppercase tracking-wider">{discountTitle}</span>
+              <span class="text-sm text-slate-400">{discountSubtitle}</span>
             </div>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4">
-            <a 
+            <a
               href={pdfUrl}
               download
               class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-via-black shadow-sm transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -49,60 +85,64 @@ const { pdfUrl, calendlyUrl, imageUrl } = Astro.props;
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              Download Program PDF
+              {pdfButtonLabel}
             </a>
-            
-            <a 
+
+            <a
               href={calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center rounded-lg border border-slate-600 bg-transparent px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 hover:border-slate-500"
             >
-              Book a Strategy Call
+              {calendlyButtonLabel}
             </a>
           </div>
-          <p class="mt-4 text-sm text-slate-400">
-            For HR professionals and Talent leaders looking to tackle team performance head-on.
-          </p>
+          {footnote && (
+            <p class="mt-4 text-sm text-slate-400">
+              {footnote}
+            </p>
+          )}
         </div>
-        
-        <div class="relative bg-via-gray lg:min-h-full">
-           {imageUrl ? (
-             <div class="absolute inset-0">
-               <img src={imageUrl} alt="Team Performance Workshop" class="w-full h-full object-cover opacity-40 grayscale" />
-               <div class="absolute inset-0 bg-gradient-to-br from-via-black/80 to-via-black/40"></div>
-             </div>
-           ) : (
-             <div class="absolute inset-0 bg-via-black"></div>
-           )}
-           
-           <div class="relative h-full flex flex-col items-center justify-center p-8 sm:p-12 text-center z-10 space-y-10">
-             <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 text-left max-w-md">
-               <h3 class="text-xl font-semibold text-white mb-4">The Challenge for Teams</h3>
-               <p class="text-slate-300 mb-4 text-sm leading-relaxed">
-                 The biggest downfall teams experience is an inability to transform problems into solutions. This blocks you from moving forward and results in many avoidable mistakes being made.
-               </p>
-               <p class="text-[10px] text-slate-400 mb-3 uppercase tracking-wider font-semibold">Common Symptoms Include:</p>
-               <ul class="space-y-3 text-slate-300 text-sm">
-                 <li class="flex items-start">
-                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
-                   <span><strong>Difficult conversations</strong> that are repeatedly put off or avoided</span>
-                 </li>
-                 <li class="flex items-start">
-                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
-                   <span><strong>Complex problem solving</strong> attempted without sufficient time</span>
-                 </li>
-                 <li class="flex items-start">
-                   <span class="text-white mr-2 mt-1 text-[10px]">•</span>
-                   <span><strong>Resistance to change</strong> due to unresolved fears</span>
-                 </li>
-               </ul>
-             </div>
 
-             <blockquote class="text-xl font-medium text-white italic max-w-md">
-               "Reaching the subconscious beliefs that determine the behaviors you see in your teams every day."
-             </blockquote>
-           </div>
+        <div class="relative bg-via-gray lg:min-h-full">
+          {imageUrl ? (
+            <div class="absolute inset-0">
+              <img src={imageUrl} alt="Team Performance Workshop" class="w-full h-full object-cover opacity-40 grayscale" />
+              <div class="absolute inset-0 bg-gradient-to-br from-via-black/80 to-via-black/40"></div>
+            </div>
+          ) : (
+            <div class="absolute inset-0 bg-via-black"></div>
+          )}
+
+          <div class="relative h-full flex flex-col items-center justify-center p-8 sm:p-12 text-center z-10 space-y-10">
+            <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 text-left max-w-md">
+              <h3 class="text-xl font-semibold text-white mb-4">{challengeTitle}</h3>
+              {challengeDescription && (
+                <p class="text-slate-300 mb-4 text-sm leading-relaxed">
+                  {challengeDescription}
+                </p>
+              )}
+              {symptoms.length > 0 && (
+                <>
+                  <p class="text-[10px] text-slate-400 mb-3 uppercase tracking-wider font-semibold">{symptomsLabel}</p>
+                  <ul class="space-y-3 text-slate-300 text-sm">
+                    {symptoms.map((s) => (
+                      <li class="flex items-start">
+                        <span class="text-white mr-2 mt-1 text-[10px]">•</span>
+                        <span><strong>{s.title}</strong> {s.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+
+            {quote && (
+              <blockquote class="text-xl font-medium text-white italic max-w-md">
+                "{quote}"
+              </blockquote>
+            )}
+          </div>
         </div>
       </div>
     </div>

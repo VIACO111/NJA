@@ -1,5 +1,6 @@
 ---
 interface Props {
+  sectionTitle?: string;
   name: string;
   title?: string;
   bio: string;
@@ -9,13 +10,13 @@ interface Props {
   imageAlt?: string;
 }
 
-const { name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevia.co', imageSrc, imageAlt = name } = Astro.props;
+const { sectionTitle = 'Speaker', name, title, bio, companyName = 'VIA', companyUrl = 'https://www.wearevia.co', imageSrc, imageAlt = name } = Astro.props;
 ---
 
 <section class="bg-white py-20 sm:py-28">
   <div class="mx-auto max-w-5xl px-6">
     <h2 class="text-2xl font-semibold tracking-tight text-via-black sm:text-3xl">
-      Speaker
+      {sectionTitle}
     </h2>
     <div class="mt-12 flex flex-col gap-12 sm:flex-row sm:items-start">
       <div class="shrink-0 sm:order-2">

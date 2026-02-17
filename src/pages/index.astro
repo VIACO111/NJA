@@ -8,56 +8,169 @@ import SpeakerBio from '../components/landing/SpeakerBio.astro';
 import OnePowerfulWay from '../components/landing/OnePowerfulWay.astro';
 import Resources from '../components/landing/Resources.astro';
 
-// Replace with your actual signup link (e.g. from QR code)
-const TRAINING_SIGNUP_URL = `${import.meta.env.BASE_URL}/signup`;
-const TEAM_PROGRAM_PDF_URL = `${import.meta.env.BASE_URL}/via-assets/Team Performance Program - We are VIA.pdf`;
+const BASE = import.meta.env.BASE_URL;
+const TRAINING_SIGNUP_URL = `${BASE}/signup`;
+const TEAM_PROGRAM_PDF_URL = `${BASE}/via-assets/Team Performance Program - We are VIA.pdf`;
 const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
+
+// ——— Page meta (browser tab, SEO) ———
+const PAGE_TITLE = "Say the hard thing | Strategic Training for P&C Leaders | VIA CO";
+const PAGE_DESCRIPTION = "Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite.";
+
+// ——— Hero ———
+const HERO_TITLE = "Say the hard thing";
+const HERO_SUBTITLE = "Driving tough conversations with your team";
+const HERO_BODY = "A strategic Training for P&C Leaders to understand the physiology of conflict, the cost of avoidance, and how to build a compelling business case that will get your C-suite excited and on-board.";
+
+// ——— Abstract / Why this matters ———
+const ABSTRACT_TITLE = "Why this matters";
+const ABSTRACT_PARAGRAPHS = [
+  { lead: true, text: "Master strategic conversations that unlock team potential." },
+  { text: "Turn difficult decisions into breakthrough moments. Learn to call, capture, and orchestrate the conversations that unblock your company's success." },
+  { text: "Great talent leaders transform friction into innovation. This training gives you the tools to lead with confidence when stakes are highest.", boldIntro: "The difference?" },
+];
+const ABSTRACT_ONLINE_DATE = "Wednesday, 25th Feb";
+const ABSTRACT_ONLINE_TIME = "1:00 PM (AEDT)";
+const ABSTRACT_EVENT_LABEL = "Online Session";
+const ABSTRACT_LOCATION_LABEL = "Zoom / Remote";
+const ABSTRACT_REGISTER_LABEL = "Register Now";
+
+// ——— Agenda ———
+const AGENDA_SECTION_TITLE = "Training Agenda";
+const AGENDA_SECTION_INTRO = "A structured approach to mastering strategic conversations and getting executive buy-in.";
+const AGENDA_ITEMS = [
+  {
+    number: 1,
+    title: "Building the Business Case",
+    body: 'Stop pitching "culture" and start pitching "results." Learn how to calculate the <strong>Cost of Inaction</strong> to make your proposals undeniable to leadership.',
+    iconPath: "via-assets/Buildup/Vision.svg",
+  },
+  {
+    number: 2,
+    title: "The Physiology of Conflict",
+    body: 'Understand why humans are biologically wired to avoid tough talks and how to manage the <strong>"gut response"</strong> that blocks progress in meetings.',
+    iconPath: "via-assets/Buildup/Direction.svg",
+  },
+  {
+    number: 3,
+    title: "The Cost of Avoidance",
+    bullets: [
+      { label: "Reset", text: 'Techniques to clear the mind and enter a "flow state".' },
+      { label: "The 3F Framework", text: "Acknowledge tension and speak truth without defensiveness." },
+      { label: "Emptying the Bottle", text: "Ensure every perspective is heard for 100% buy-in." },
+    ],
+    iconPath: "via-assets/Buildup/Alignment.svg",
+  },
+];
+
+// ——— Speaker ———
+const SPEAKER_SECTION_TITLE = "Speaker";
+const SPEAKER_NAME = "The VIA team";
+const SPEAKER_TITLE = "Executive infrastructure & strategic facilitation";
+const SPEAKER_BIO = "At VIA, we've conducted incredible workshops all around the world. We've developed a systematic way to have really rich conversations by entering into flow state. The result? Teams that are able to innovate, push through, and tackle blockages head-on, transforming them into opportunities.";
+
+// ——— One Powerful Way ———
+const OPW_LINES = ["One.", "Powerful.", "Way."];
+const OPW_BODY = "At VIA we turn hard conversations into creative solutions through unique bespoke offsites.";
+const OPW_CTA_LABEL = "Learn More";
+const OPW_CTA_URL = "https://www.wearevia.co";
+
+// ——— Offer section ———
+const OFFER_BADGE = "Exclusive Offer";
+const OFFER_TITLE = "The 'Way of Strength' Program";
+const OFFER_DESCRIPTION = "Gearing up for something bigger? We run an elite Team Performance Program in partnership with a stunning retreat centre in the Blue Mountains.";
+const OFFER_DISCOUNT_PERCENT = "30%";
+const OFFER_DISCOUNT_TITLE = "OFF Team Performance Program";
+const OFFER_DISCOUNT_SUBTITLE = "Valid if you hire us for external help";
+const OFFER_PDF_BUTTON = "Download Program PDF";
+const OFFER_CALENDLY_BUTTON = "Book a Strategy Call";
+const OFFER_FOOTNOTE = "For HR professionals and Talent leaders looking to tackle team performance head-on.";
+const OFFER_CHALLENGE_TITLE = "The Challenge for Teams";
+const OFFER_CHALLENGE_DESCRIPTION = "The biggest downfall teams experience is an inability to transform problems into solutions. This blocks you from moving forward and results in many avoidable mistakes being made.";
+const OFFER_SYMPTOMS_LABEL = "Common Symptoms Include:";
+const OFFER_SYMPTOMS = [
+  { title: "Difficult conversations", text: "that are repeatedly put off or avoided" },
+  { title: "Complex problem solving", text: "attempted without sufficient time" },
+  { title: "Resistance to change", text: "due to unresolved fears" },
+];
+const OFFER_QUOTE = "Reaching the subconscious beliefs that determine the behaviors you see in your teams every day.";
+
+// ——— Resources ———
+const RESOURCES_TITLE = "Choose one of the following";
+const RESOURCES_SUBTITLE = "Secure your spot for the training, explore the team program, or join the community.";
+const RESOURCES_LIST = [
+  { title: "Attend the Training", href: TRAINING_SIGNUP_URL, description: "Limited to 10 spots · 2 groups · first come, first served" },
+  { title: "Download Team Program PDF", href: TEAM_PROGRAM_PDF_URL, description: 'Get the full details on "The Way of Strength"' },
+  { title: "Book a Strategy Call", href: CALENDLY_URL, description: "Discuss your team's needs directly with us" },
+];
 ---
 
-<Layout
-  title="Say the hard thing | Strategic Training for P&C Leaders | VIA CO"
-  description="Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite."
->
+<Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
   <main class="relative bg-white">
     <Hero
-      title="Say the hard thing"
-      subtitle="Strategic Training for P&C Leaders"
-      body="Discover a way to have difficult conversations with your teams without your heart rate skyrocketing. Understand the physiology of conflict, the cost of avoidance, and how to build a compelling business case that will get your C-suite excited and on-board."
+      title={HERO_TITLE}
+      subtitle={HERO_SUBTITLE}
+      body={HERO_BODY}
       primaryCtaUrl={TRAINING_SIGNUP_URL}
       primaryCtaLabel="Sign up"
     />
-    
+
     <AbstractEventDetails
-      onlineDate="Wednesday, 25th Feb"
-      onlineTime="1:00 PM (AEDT)"
+      title={ABSTRACT_TITLE}
+      paragraphs={ABSTRACT_PARAGRAPHS}
+      onlineDate={ABSTRACT_ONLINE_DATE}
+      onlineTime={ABSTRACT_ONLINE_TIME}
       signupUrl={TRAINING_SIGNUP_URL}
-      title="Why this matters"
+      eventLabel={ABSTRACT_EVENT_LABEL}
+      locationLabel={ABSTRACT_LOCATION_LABEL}
+      registerLabel={ABSTRACT_REGISTER_LABEL}
     />
 
-    <Agenda />
+    <Agenda
+      sectionTitle={AGENDA_SECTION_TITLE}
+      sectionIntro={AGENDA_SECTION_INTRO}
+      items={AGENDA_ITEMS}
+    />
 
     <SpeakerBio
-      name="The VIA team"
-      title="Executive infrastructure & strategic facilitation"
-      bio="At VIA, we've conducted incredible workshops all around the world. We've developed a systematic way to have really rich conversations by entering into flow state. The result? Teams that are able to innovate, push through, and tackle blockages head-on, transforming them into opportunities."
-      imageSrc={`${import.meta.env.BASE_URL}/via-assets/Presenters.png`}
+      sectionTitle={SPEAKER_SECTION_TITLE}
+      name={SPEAKER_NAME}
+      title={SPEAKER_TITLE}
+      bio={SPEAKER_BIO}
+      imageSrc={`${BASE}/via-assets/Presenters.png`}
     />
 
-    <OnePowerfulWay />
+    <OnePowerfulWay
+      headlineLines={OPW_LINES}
+      body={OPW_BODY}
+      ctaLabel={OPW_CTA_LABEL}
+      ctaUrl={OPW_CTA_URL}
+    />
 
     <OfferSection
       pdfUrl={TEAM_PROGRAM_PDF_URL}
       calendlyUrl={CALENDLY_URL}
-      imageUrl={`${import.meta.env.BASE_URL}/via-assets/workshop.jpg`}
+      imageUrl={`${BASE}/via-assets/workshop.jpg`}
+      badgeLabel={OFFER_BADGE}
+      title={OFFER_TITLE}
+      description={OFFER_DESCRIPTION}
+      discountPercent={OFFER_DISCOUNT_PERCENT}
+      discountTitle={OFFER_DISCOUNT_TITLE}
+      discountSubtitle={OFFER_DISCOUNT_SUBTITLE}
+      pdfButtonLabel={OFFER_PDF_BUTTON}
+      calendlyButtonLabel={OFFER_CALENDLY_BUTTON}
+      footnote={OFFER_FOOTNOTE}
+      challengeTitle={OFFER_CHALLENGE_TITLE}
+      challengeDescription={OFFER_CHALLENGE_DESCRIPTION}
+      symptomsLabel={OFFER_SYMPTOMS_LABEL}
+      symptoms={OFFER_SYMPTOMS}
+      quote={OFFER_QUOTE}
     />
-    
+
     <Resources
-      title="Choose one of the following"
-      resources={[
-        { title: 'Attend the Training', href: TRAINING_SIGNUP_URL, description: 'Limited to 10 spots · 2 groups · first come, first served' },
-        { title: 'Download Team Program PDF', href: TEAM_PROGRAM_PDF_URL, description: 'Get the full details on "The Way of Strength"' },
-        { title: 'Book a Strategy Call', href: CALENDLY_URL, description: 'Discuss your team\'s needs directly with us' },
-      ]}
+      title={RESOURCES_TITLE}
+      subtitle={RESOURCES_SUBTITLE}
+      resources={RESOURCES_LIST}
     />
   </main>
 </Layout>
