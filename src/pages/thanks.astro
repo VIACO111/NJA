@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const GOOGLE_MEET_URL = 'https://meet.google.com/xxx-xxxx-xxx'; // Replace with your actual Google Meet link
-const SESSION_TIME = "Thursday, 26th Feb @ 1:00 PM (AEDT)";
+const GOOGLE_MEET_URL = 'https://meet.google.com/wsg-vjch-mjo';
+const CALENDAR_ADD_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MG5saGxlZHMwYnZwMDNwYjVwMXN1N2QzYnQgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
+const SESSION_TIME = "Thursday, 26 February · 1:00 – 2:00 PM (Australia/Sydney)";
+const MEET_DIAL = "(AU) +61 2 9051 4684";
+const MEET_PIN = "195 990 867";
 ---
 
 <Layout 
@@ -18,7 +21,7 @@ const SESSION_TIME = "Thursday, 26th Feb @ 1:00 PM (AEDT)";
         Your registration has been received.
       </p>
       <div class="bg-white/5 border border-white/10 rounded-xl p-6 text-left space-y-4">
-        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400">Your session</h2>
+        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400">Say the hard things w/ VIA</h2>
         <p class="text-slate-300">{SESSION_TIME}</p>
         <p class="text-sm font-semibold text-white">Join via Google Meet:</p>
         <a 
@@ -29,7 +32,16 @@ const SESSION_TIME = "Thursday, 26th Feb @ 1:00 PM (AEDT)";
         >
           {GOOGLE_MEET_URL}
         </a>
-        <p class="text-sm text-slate-400">We've also sent this link to your email. Add the session to your calendar and we'll see you there.</p>
+        <p class="text-sm text-slate-400">Or dial: {MEET_DIAL} · PIN: {MEET_PIN}</p>
+        <p class="text-sm text-slate-400 mt-2">Add the session to your calendar so you don't miss it:</p>
+        <a 
+          href={CALENDAR_ADD_URL} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center"
+        >
+          <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add to Google Calendar" class="h-8 border-0" />
+        </a>
       </div>
       <div class="pt-4">
         <a 

@@ -29,18 +29,24 @@ const DEFAULT_LABELS: SignupFormLabels = {
   promoHint: "Enter a valid promo code for free registration, or leave blank to pay $100.",
   submitButton: "Register for Event",
   modalTitle: "Complete Payment",
-  modalBody: "Please complete payment to proceed with registration. After payment, you can return to complete the form.",
+  modalBody: "Please complete payment to proceed with registration. After payment, click the I've completed payment button.",
   modalButton: "I've Completed Payment",
 };
+
+const CONTACT_EMAIL_DEFAULT = 'contact@wearevia.co';
 
 interface Props {
   labels?: Partial<SignupFormLabels>;
   /** Wise (or other) payment URL — opened in new tab; Wise blocks iframe embedding. */
   paymentUrl?: string;
+  contactEmail?: string;
+  contactHelpText?: string;
 }
 
 const L = { ...DEFAULT_LABELS, ...Astro.props.labels };
 const WISE_PAYMENT_URL = Astro.props.paymentUrl ?? 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
+const CONTACT_EMAIL = Astro.props.contactEmail ?? CONTACT_EMAIL_DEFAULT;
+const CONTACT_HELP_TEXT = Astro.props.contactHelpText ?? 'Need help with payment or the meetup? Email us at';
 ---
 <section class="w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
   <form 
@@ -112,6 +118,7 @@ const WISE_PAYMENT_URL = Astro.props.paymentUrl ?? 'https://wise.com/pay/r/jhxzr
           <div class="mt-4">
             <p class="text-sm text-slate-600 mb-4">{L.modalBody}</p>
             <p class="text-xs text-slate-500 mb-4">Wise payment opens in a new tab. Return here after you've paid and click the button below to complete registration.</p>
+            <p class="text-xs text-slate-500 mb-4">{CONTACT_HELP_TEXT} <a href={`mailto:${CONTACT_EMAIL}`} class="text-via-black font-semibold hover:underline">{CONTACT_EMAIL}</a></p>
             <div class="flex flex-col sm:flex-row gap-3">
               <a
                 id="payment-open-link"
