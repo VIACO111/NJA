@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -30,5 +31,6 @@ const { title, description = 'NJA Meetup · VIA CO' } = Astro.props;
       </div>
     </header>
     <slot />
+    <Footer />
   </body>
 </html>

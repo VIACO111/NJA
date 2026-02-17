@@ -105,17 +105,17 @@ const {
           )}
         </div>
 
-        <div class="relative bg-via-gray lg:min-h-full">
+        <div class="relative bg-via-gray min-h-0 lg:min-h-full">
           {imageUrl ? (
-            <div class="absolute inset-0">
-              <img src={imageUrl} alt="Team Performance Workshop" class="w-full h-full object-cover opacity-40 grayscale" />
+            <div class="absolute inset-0 min-h-0">
+              <img src={imageUrl} alt="Team Performance Workshop" class="w-full h-full object-cover opacity-40 grayscale min-h-0" />
               <div class="absolute inset-0 bg-gradient-to-br from-via-black/80 to-via-black/40"></div>
             </div>
           ) : (
             <div class="absolute inset-0 bg-via-black"></div>
           )}
 
-          <div class="relative h-full flex flex-col items-center justify-center p-8 sm:p-12 text-center z-10 space-y-10">
+          <div class="relative min-h-0 lg:h-full flex flex-col items-center justify-center p-8 sm:p-12 text-center z-10 space-y-10">
             <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 text-left max-w-md">
               <h3 class="text-xl font-semibold text-white mb-4">{challengeTitle}</h3>
               {challengeDescription && (
