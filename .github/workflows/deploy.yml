@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: "20"
-        cache: "npm"
+        # No cache: project has no package-lock.json (add one later for faster CI)
 
     - name: 📦 Install dependencies
       run: npm ci || npm install
