@@ -5,6 +5,8 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    /* Prevent mobile Safari from adding blank space at bottom (100vh > visible viewport) */
+    min-height: -webkit-fill-available;
   }
   body {
     @apply font-sans text-via-black antialiased;
