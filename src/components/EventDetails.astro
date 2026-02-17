@@ -2,12 +2,12 @@
 interface Props {
   onlineDate: string;
   onlineTime: string;
-  inPersonDate: string;
-  inPersonTime: string;
-  location: string;
+  inPersonDate?: string;
+  inPersonTime?: string;
+  location?: string;
 }
 
-const { onlineDate, onlineTime, inPersonDate, inPersonTime, location } = Astro.props;
+const { onlineDate, onlineTime } = Astro.props;
 ---
 
 <section class="py-24 bg-via-light">
@@ -17,11 +17,11 @@ const { onlineDate, onlineTime, inPersonDate, inPersonTime, location } = Astro.p
         Join the Training
       </h2>
       <p class="mt-4 text-lg text-slate-600">
-        Choose how you want to participate. We have an online session for convenience and an in-person meet & greet for deeper connection.
+        Join us for an online training session designed for P&C leaders.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div class="max-w-md mx-auto">
       <!-- Online Session -->
       <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
         <div class="w-12 h-12 bg-via-light rounded-full flex items-center justify-center mb-6">
@@ -35,24 +35,6 @@ const { onlineDate, onlineTime, inPersonDate, inPersonTime, location } = Astro.p
         <div class="mt-6">
           <span class="inline-flex items-center rounded-full bg-via-light px-3 py-1 text-sm font-medium text-via-black ring-1 ring-inset ring-black/10">
             Zoom / Remote
-          </span>
-        </div>
-      </div>
-
-      <!-- In-Person Session -->
-      <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-        <div class="w-12 h-12 bg-via-light rounded-full flex items-center justify-center mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-via-black">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-via-black mb-2">Live Q&A & Meetup</h3>
-        <p class="text-slate-600 mb-1">{inPersonDate}</p>
-        <p class="text-via-black font-semibold text-lg">{inPersonTime}</p>
-        <div class="mt-6">
-          <span class="inline-flex items-center rounded-full bg-via-light px-3 py-1 text-sm font-medium text-via-black ring-1 ring-inset ring-black/10">
-            {location}
           </span>
         </div>
       </div>

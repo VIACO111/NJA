@@ -7,7 +7,6 @@ import EventDetails from '../components/EventDetails.astro';
 import Agenda from '../components/Agenda.astro';
 import OfferSection from '../components/OfferSection.astro';
 import SpeakerBio from '../components/SpeakerBio.astro';
-import ThankYouNJA from '../components/ThankYouNJA.astro';
 import OnePowerfulWay from '../components/OnePowerfulWay.astro';
 import Resources from '../components/Resources.astro';
 
@@ -33,8 +32,6 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
       subtitle="Understand how to improve the quality of decisions in your organisation and get your leaders to buy into the solutions you're proposing."
       conferenceName="NJA Meetup"
       date="Sydney · Feb 2025"
-      primaryCtaUrl={TRAINING_SIGNUP_URL}
-      primaryCtaLabel="Sign up for training (limited spots)"
       backgroundImage={`${import.meta.env.BASE_URL}/via-assets/hero.png`}
     />
     
@@ -52,34 +49,29 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
       title="Why this matters"
     />
 
-
-
-    <OfferSection
-      pdfUrl={TEAM_PROGRAM_PDF_URL}
-      calendlyUrl={CALENDLY_URL}
-      imageUrl={`${import.meta.env.BASE_URL}/via-assets/workshop.jpg`}
-    />
-
     <SpeakerBio
       name="The VIA team"
       title="Executive infrastructure & strategic facilitation"
       bio="At VIA, we've conducted more than 50 workshops with various teams including Google, Cisco, and Atlassian. Jesus and Anastasiya have developed a systematic way to have these conversations by entering into flow state and leaving the ego behind. The result? Teams that are able to innovate, push through, and tackle blockages head-on, transforming them into opportunities."
       imageSrc={`${import.meta.env.BASE_URL}/via-assets/Presenters.png`}
     />
-    
-    <ThankYouNJA />
+
+    <OnePowerfulWay />
+
+    <OfferSection
+      pdfUrl={TEAM_PROGRAM_PDF_URL}
+      calendlyUrl={CALENDLY_URL}
+      imageUrl={`${import.meta.env.BASE_URL}/via-assets/workshop.jpg`}
+    />
     
     <Resources
       title="Choose one of the following"
       resources={[
-        { title: 'Book Now', href: TRAINING_SIGNUP_URL, description: 'Register your spot for the upcoming training' },
         { title: 'Learn Strategic Faciliation', href: TRAINING_SIGNUP_URL, description: 'Limited to 10 spots · 2 groups · first come, first served' },
         { title: 'Download Program PDF', href: TEAM_PROGRAM_PDF_URL, description: 'Get the full details on "The Way of Strength"' },
         { title: 'Book a Strategy Call', href: CALENDLY_URL, description: 'Discuss your team\'s needs directly with us' },
         { title: 'Sydney Talent Meetup', href: 'https://www.meetup.com/en-AU/sydney-talent-meetup/', description: 'Join #NJAMeetup' },
       ]}
     />
-
-    <OnePowerfulWay />
   </main>
 </Layout>

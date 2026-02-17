@@ -68,15 +68,11 @@
     </div>
 
     <div class="space-y-2">
-      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Select Your Session(s)</label>
+      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">Session</label>
       <div class="flex flex-col space-y-3">
         <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-          <input type="checkbox" name="session_online" value="yes" class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
+          <input type="checkbox" name="session_online" value="yes" checked class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
           <span class="ml-3 text-slate-700 font-medium">Online Training (Wed 25th Feb, 1PM AEDT)</span>
-        </label>
-        <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-          <input type="checkbox" name="session_in_person" value="yes" class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
-          <span class="ml-3 text-slate-700 font-medium">In-Person Q&A & Meetup (Wed 25th Feb, 6PM AEDT)</span>
         </label>
       </div>
     </div>
@@ -87,10 +83,11 @@
         type="text" 
         id="promo" 
         name="promo_code" 
-        placeholder="Enter code"
+        placeholder="Enter code (or leave blank to pay $100)"
         class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none"
       >
-      <p class="text-xs text-slate-500 mt-1 italic">Note: If applicable, a payment link will be sent to your email after registration.</p>
+      <p id="promo-error" class="text-xs text-red-600 mt-1 hidden">Invalid promo code. Please enter a valid code or complete payment.</p>
+      <p class="text-xs text-slate-500 mt-1 italic">Enter a valid promo code for free registration, or leave blank to pay $100.</p>
     </div>
 
     <button 
@@ -101,8 +98,143 @@
       Register for Event
     </button>
   </form>
+
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <!-- Background overlay -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" id="payment-overlay"></div>
+
+      <!-- Modal panel -->
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-via-black uppercase tracking-tight" id="modal-title">
+              Complete Payment
+            </h3>
+            <button
+              type="button"
+              id="close-payment-modal"
+              class="text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm text-slate-600 mb-4">
+              Please complete payment to proceed with registration. After payment, you can return to complete the form.
+            </p>
+            <div class="border border-slate-200 rounded-lg overflow-hidden" style="height: 600px;">
+              <iframe
+                id="payment-iframe"
+                src="https://wise.com/pay/r/jhxzrcMaIq5jqzY"
+                class="w-full h-full"
+                frameborder="0"
+                allow="payment"
+              ></iframe>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <button
+                type="button"
+                id="payment-complete-btn"
+                class="px-4 py-2 bg-via-black text-white text-sm font-semibold uppercase tracking-wider rounded-lg hover:bg-via-gray transition-colors"
+              >
+                I've Completed Payment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script>
-  // Dynamic status update removed as per new simplified registration flow
+  const VALID_PROMO_CODE = 'NJAFREE';
+  const paymentModal = document.getElementById('payment-modal');
+  const paymentOverlay = document.getElementById('payment-overlay');
+  const closePaymentModal = document.getElementById('close-payment-modal');
+  const paymentCompleteBtn = document.getElementById('payment-complete-btn');
+  const promoInput = document.getElementById('promo');
+  const promoError = document.getElementById('promo-error');
+  const form = document.querySelector('form');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function validatePromoCode(code) {
+    return code.trim().toUpperCase() === VALID_PROMO_CODE.toUpperCase();
+  }
+
+  function showPaymentModal() {
+    paymentModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hidePaymentModal() {
+    paymentModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function showPromoError() {
+    promoError.classList.remove('hidden');
+    promoInput.classList.add('border-red-500');
+  }
+
+  function hidePromoError() {
+    promoError.classList.add('hidden');
+    promoInput.classList.remove('border-red-500');
+  }
+
+  // Close modal handlers
+  closePaymentModal?.addEventListener('click', hidePaymentModal);
+  paymentOverlay?.addEventListener('click', hidePaymentModal);
+
+  // Payment complete button - allows form submission after payment
+  paymentCompleteBtn?.addEventListener('click', () => {
+    hidePaymentModal();
+    // Submit the form after payment is completed
+    if (form) {
+      form.submit();
+    }
+  });
+
+  // Validate promo code on input (only show error if they entered something invalid)
+  promoInput?.addEventListener('blur', () => {
+    const code = promoInput.value.trim();
+    if (code && !validatePromoCode(code)) {
+      showPromoError();
+    } else {
+      hidePromoError();
+    }
+  });
+
+  // Form submission handler
+  form?.addEventListener('submit', (e) => {
+    const promoCode = promoInput?.value.trim() || '';
+    
+    // If no promo code or invalid promo code, show payment modal
+    if (!promoCode || !validatePromoCode(promoCode)) {
+      e.preventDefault();
+      // Only show error if they entered an invalid code (not if empty)
+      if (promoCode && !validatePromoCode(promoCode)) {
+        showPromoError();
+      } else {
+        hidePromoError();
+      }
+      showPaymentModal();
+      return false;
+    }
+    
+    // Valid promo code, allow form submission to proceed normally
+    hidePromoError();
+    return true;
+  });
+
+  // ESC key to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !paymentModal.classList.contains('hidden')) {
+      hidePaymentModal();
+    }
+  });
 </script>

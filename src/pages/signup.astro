@@ -4,12 +4,11 @@ import SignupForm from '../components/SignupForm.astro';
 
 const WISE_PAYMENT_URL = 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
 const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmRjODBtdnNkYzVhZG1odWl1OWthbDQ2bXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
-const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MWFwbDJmNmlkMnAzMTZtYjRjaTQ5YWozcXAgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
 ---
 
 <Layout 
   title="Register: Real Conversations | VIA CO"
-  description="Sign up for Real Conversations: Strategic Training for P&C Leaders. Available online and in-person."
+  description="Sign up for Real Conversations: Strategic Training for P&C Leaders. Online training session."
 >
   <main class="pt-32 pb-24 bg-via-light min-h-screen">
     <div class="mx-auto max-w-7xl px-6">
@@ -28,7 +27,7 @@ const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEM
               Real<br/>Conversations.
             </h1>
             <p class="mt-6 text-xl text-slate-600 leading-relaxed max-w-xl">
-              Strategic Training for P&C Leaders. Choose your session below and register to secure your spot.
+              Strategic Training for P&C Leaders. Register below to secure your spot.
             </p>
           </div>
 
@@ -37,7 +36,7 @@ const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEM
             <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-6">
               <div class="flex items-start justify-between">
                 <h2 class="text-2xl font-bold text-via-black uppercase tracking-tight">
-                  1. Online Strategic Training
+                  Online Strategic Training
                 </h2>
                 <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded transition-colors group-hover:bg-via-gray">Online</span>
               </div>
@@ -82,47 +81,6 @@ const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEM
                 Continue to Payment (100 AUD)
               </a>
             </div>
-
-            <!-- In-Person Section -->
-            <div class="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-2xl font-bold text-via-black uppercase tracking-tight">
-                  2. Live Q&A & Networking
-                </h2>
-                <span class="px-3 py-1 bg-via-black text-white text-[10px] font-bold uppercase tracking-widest rounded">In-Person</span>
-              </div>
-
-              <div class="text-sm space-y-2 text-via-gray font-medium uppercase tracking-wider">
-                <p>Location: Camperdown Commons</p>
-                <p>Time: Wed, 25th Feb @ 5:30 PM (AEDT)</p>
-              </div>
-
-              <div class="prose prose-slate text-slate-600 max-w-none">
-                <p>Why do the most important conversations in our organisations often go unsaid? Join the VIA team for an evening of drinks, networking, and a "no-filter" Q&A.</p>
-                
-                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">We'll tackle your toughest questions:</h4>
-                <ul class="space-y-2 text-sm">
-                  <li><strong>The Buy-In Battle:</strong> How to finally get the CEO to invest in team culture.</li>
-                  <li><strong>The Biology of Conflict:</strong> How to reset the room when a team shuts down.</li>
-                  <li><strong>Strategy Gap:</strong> Moving from ego-driven friction to a "flow state."</li>
-                </ul>
-              </div>
-
-              <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
-                <div>
-                  <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">Registration Fee</p>
-                  <p class="text-xl font-black text-via-black">FREE</p>
-                </div>
-                <a 
-                  href={CALENDAR_LIVE_URL} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline"
-                >
-                  <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Live Event to Calendar" class="h-6" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -130,11 +88,11 @@ const CALENDAR_LIVE_URL = 'https://calendar.google.com/calendar/event?action=TEM
         <div class="sticky top-32">
           <div class="bg-via-black text-white p-8 rounded-t-2xl">
             <h3 class="font-montserrat font-bold text-2xl uppercase tracking-tight">Complete Registration</h3>
-            <p class="mt-2 text-slate-400 text-sm">Secure your place for either or both sessions.</p>
+            <p class="mt-2 text-slate-400 text-sm">Secure your place for the training session.</p>
           </div>
           <SignupForm />
           <p class="mt-8 text-center text-sm text-slate-500">
-            By registering, you agree to our privacy policy. We will send you the Google Meet link or venue details via email.
+            By registering, you agree to our privacy policy. We will send you the Google Meet link via email.
           </p>
         </div>
 
