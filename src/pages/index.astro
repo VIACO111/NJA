@@ -41,13 +41,13 @@ const AGENDA_SECTION_INTRO = "A structured approach to mastering strategic conve
 const AGENDA_ITEMS = [
   {
     number: 1,
-    title: "Building the Business Case",
+    title: "The Physiology of Conflict",
     body: 'Stop pitching "culture" and start pitching "results." Learn how to calculate the <strong>Cost of Inaction</strong> to make your proposals undeniable to leadership.',
     iconPath: "via-assets/Buildup/Vision.svg",
   },
   {
     number: 2,
-    title: "The Physiology of Conflict",
+    title: "The Cost of Avoidance",
     body: 'Understand why humans are biologically wired to avoid tough talks and how to manage the <strong>"gut response"</strong> that blocks progress in meetings.',
     iconPath: "via-assets/Buildup/Direction.svg",
   },
@@ -64,13 +64,25 @@ const AGENDA_ITEMS = [
 ];
 
 // ——— Speaker ———
-const SPEAKER_SECTION_TITLE = "Speaker";
-const SPEAKER_NAME = "The VIA team";
-const SPEAKER_TITLE = "Executive infrastructure & strategic facilitation";
-const SPEAKER_BIO = "At VIA, we've conducted incredible workshops all around the world. We've developed a systematic way to have really rich conversations by entering into flow state. The result? Teams that are able to innovate, push through, and tackle blockages head-on, transforming them into opportunities.";
+const SPEAKER_SECTION_TITLE = "Your facilitators";
+const SPEAKER_INTRO = "Jesús and Anastasiya created VIA Co to bring neuroscience, psychology and facilitation together so leaders can have the conversations that matter.";
+const SPEAKERS = [
+  {
+    name: "Jesús Fernández",
+    title: "CEO and Co-founder at VIA Co.",
+    bio: "Facilitator with 14 years in the field. He's architected programs for thousands at Fortune 500 companies and worked with executive teams at Cisco, Baxter, Deloitte, Telstra and Google.",
+    imageSrc: `${BASE}/via-assets/Presenters.png`,
+  },
+  {
+    name: "Anastasiya Loukienko",
+    title: "COO and Co-founder at VIA Co.",
+    bio: "People and Culture Lead at Eucalyptus; has partnered with Canva, Atlassian, WooliesX and others. She guides teams in executive coaching, flow-state facilitation and deep dive conversations.",
+    imageSrc: `${BASE}/via-assets/Presenters.png`,
+  },
+];
 
 // ——— One Powerful Way ———
-const OPW_LINES = ["One.", "Powerful.", "Way."];
+const OPW_LINES = ["One", "Powerful", "Way"];
 const OPW_BODY = "At VIA we turn hard conversations into creative solutions through unique bespoke offsites.";
 const OPW_CTA_LABEL = "Learn More";
 const OPW_CTA_URL = "https://www.wearevia.co";
@@ -134,10 +146,8 @@ const RESOURCES_LIST = [
 
     <SpeakerBio
       sectionTitle={SPEAKER_SECTION_TITLE}
-      name={SPEAKER_NAME}
-      title={SPEAKER_TITLE}
-      bio={SPEAKER_BIO}
-      imageSrc={`${BASE}/via-assets/Presenters.png`}
+      intro={SPEAKER_INTRO}
+      speakers={SPEAKERS}
     />
 
     <OnePowerfulWay
