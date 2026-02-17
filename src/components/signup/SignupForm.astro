@@ -86,9 +86,9 @@ const WISE_PAYMENT_URL = Astro.props.paymentUrl ?? 'https://wise.com/pay/r/jhxzr
 
     <div class="space-y-2">
       <label for="promo" class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.promoLabel}</label>
-      <input type="text" id="promo" name="promo_code" placeholder={L.promoPlaceholder} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
+      <input type="text" id="promo" name="promo_code" placeholder={L.promoPlaceholder || undefined} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-via-black focus:border-transparent transition-all outline-none">
       <p id="promo-error" class="text-xs text-red-600 mt-1 hidden">{L.promoError}</p>
-      <p class="text-xs text-slate-500 mt-1 italic">{L.promoHint}</p>
+      {L.promoHint ? <p class="text-xs text-slate-500 mt-1 italic">{L.promoHint}</p> : null}
     </div>
 
     <button type="submit" id="submit-btn" class="w-full bg-via-black text-white py-4 px-6 rounded-lg font-bold text-lg uppercase tracking-widest hover:bg-via-gray transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">

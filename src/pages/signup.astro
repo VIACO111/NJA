@@ -102,7 +102,7 @@ const FORM_LABELS = {
               <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
                 <div>
                   <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">{FEE_LABEL}</p>
-                  <p class="text-xl font-black text-via-black">{FEE_AMOUNT} <span class="text-sm font-normal text-slate-400">{FEE_NOTE}</span></p>
+                  <p class="text-xl font-black text-via-black">{FEE_AMOUNT}{FEE_NOTE && <span class="text-sm font-normal text-slate-400"> {FEE_NOTE}</span>}</p>
                 </div>
                 <a href={CALENDAR_ONLINE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline">
                   <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Online Event to Calendar" class="h-6" />
@@ -121,9 +121,11 @@ const FORM_LABELS = {
             <p class="mt-2 text-slate-400 text-sm">{FORM_SUBHEADING}</p>
           </div>
           <SignupForm labels={FORM_LABELS} paymentUrl={WISE_PAYMENT_URL} />
-          <p class="mt-8 text-center text-sm text-slate-500">
-            {FORM_FOOTER}
-          </p>
+          {FORM_FOOTER && (
+            <p class="mt-8 text-center text-sm text-slate-500">
+              {FORM_FOOTER}
+            </p>
+          )}
         </div>
       </div>
     </div>
