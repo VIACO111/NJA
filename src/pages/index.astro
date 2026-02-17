@@ -1,14 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Abstract from '../components/Abstract.astro';
-
-import EventDetails from '../components/EventDetails.astro';
-import Agenda from '../components/Agenda.astro';
-import OfferSection from '../components/OfferSection.astro';
-import SpeakerBio from '../components/SpeakerBio.astro';
-import OnePowerfulWay from '../components/OnePowerfulWay.astro';
-import Resources from '../components/Resources.astro';
+import Hero from '../components/landing/Hero.astro';
+import AbstractEventDetails from '../components/landing/AbstractEventDetails.astro';
+import Agenda from '../components/landing/Agenda.astro';
+import OfferSection from '../components/landing/OfferSection.astro';
+import SpeakerBio from '../components/landing/SpeakerBio.astro';
+import OnePowerfulWay from '../components/landing/OnePowerfulWay.astro';
+import Resources from '../components/landing/Resources.astro';
 
 // Replace with your actual signup link (e.g. from QR code)
 const TRAINING_SIGNUP_URL = `${import.meta.env.BASE_URL}/signup`;
@@ -17,37 +15,26 @@ const CALENDLY_URL = 'https://calendly.com/callbackvia/meeting';
 ---
 
 <Layout
-  title="Real Conversations: Strategic Training for P&C Leaders | VIA CO"
+  title="Say the hard thing | Strategic Training for P&C Leaders | VIA CO"
   description="Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite."
 >
   <main class="relative bg-white">
-    <a
-      href={`${import.meta.env.BASE_URL}/docs/pamela-script`}
-      class="absolute top-4 right-6 text-[10px] uppercase tracking-widest text-slate-400 hover:text-via-black transition-colors z-50"
-    >
-      pamela
-    </a>
     <Hero
-      title="Real Conversations: Strategic Training for P&C Leaders"
-      subtitle="Understand how to improve the quality of decisions in your organisation and get your leaders to buy into the solutions you're proposing."
-      conferenceName="NJA Meetup"
-      date="Sydney · Feb 2025"
-      backgroundImage={`${import.meta.env.BASE_URL}/via-assets/hero.png`}
+      title="Say the hard thing"
+      subtitle="Strategic training for P&C leaders"
+      body="Understand how to improve the quality of decisions in your organisation and get your leaders to buy into the solutions you're proposing."
+      primaryCtaUrl={TRAINING_SIGNUP_URL}
+      primaryCtaLabel="Sign up"
     />
     
-    <EventDetails
+    <AbstractEventDetails
       onlineDate="Wednesday, 25th Feb"
       onlineTime="1:00 PM (AEDT)"
-      inPersonDate="Wednesday, 25th Feb"
-      inPersonTime="5:30 PM (AEDT)"
-      location="Camperdown Commons"
+      signupUrl={TRAINING_SIGNUP_URL}
+      title="Why this matters"
     />
 
     <Agenda />
-
-    <Abstract
-      title="Why this matters"
-    />
 
     <SpeakerBio
       name="The VIA team"

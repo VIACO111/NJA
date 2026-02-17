@@ -1,0 +1,62 @@
+---
+interface Props {
+  onlineDate: string;
+  onlineTime: string;
+  signupUrl: string;
+  title?: string;
+}
+
+const { onlineDate, onlineTime, signupUrl, title = "Why this matters" } = Astro.props;
+---
+
+<section class="py-24 bg-via-light">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Left: Abstract -->
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-via-black sm:text-4xl mb-6">
+          {title}
+        </h2>
+        <div class="space-y-6 text-lg text-slate-700 leading-relaxed">
+          <p class="font-semibold text-via-black text-xl">
+            Master strategic conversations that unlock team potential.
+          </p>
+          <p>
+            Turn difficult decisions into breakthrough moments. Learn to call, capture, and orchestrate the conversations that unblock your company's success.
+          </p>
+          <p>
+            <strong class="text-via-black">The difference?</strong> Great talent leaders transform friction into innovation. This training gives you the tools to lead with confidence when stakes are highest.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right: Event Details (clickable) -->
+      <a 
+        href={signupUrl}
+        class="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 flex flex-col items-center text-center hover:shadow-lg hover:border-via-black transition-all cursor-pointer"
+      >
+        <div class="w-12 h-12 bg-via-light rounded-full flex items-center justify-center mb-6 group-hover:bg-via-black transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-via-black group-hover:text-white transition-colors">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-via-black mb-2">Online Session</h3>
+        <p class="text-slate-600 mb-1">{onlineDate}</p>
+        <p class="text-via-black font-semibold text-lg mb-4">{onlineTime}</p>
+        <div class="mt-4 mb-4">
+          <span class="inline-flex items-center rounded-full bg-via-light px-3 py-1 text-sm font-medium text-via-black ring-1 ring-inset ring-black/10">
+            Zoom / Remote
+          </span>
+        </div>
+        <div class="mt-4 flex items-center text-via-black font-semibold text-sm uppercase tracking-wider group-hover:text-via-gray transition-colors">
+          <span>Register Now</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+</section>
