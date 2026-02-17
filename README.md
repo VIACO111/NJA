@@ -1,14 +1,15 @@
-# NJA Meetup — Landing Page
+# Say the hard thing — Landing & Signup
 
-Static landing page for the **VIA CO** pitch at **NJA Meetup** (Sydney Talent Meetup). Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). Goal: drive P&C folks to the **free training** and the team program.
+Static site for **VIA CO**’s “Say the hard thing” strategic training for P&C leaders. Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). Drives signups to the free online training and team program.
 
 ---
 
 ## What this is
 
-- **One-page site**: hero, “why this matters,” what you’ll get, speaker (VIA team), next steps (training signup, team program, Meetup), footer.
-- **Message**: Better decisions and more C-suite buy-in; free training (limited spots); team offsites / collective flow state.
-- **Brand**: VIA CO (wearevia.co). Styling: VIA navy, Inter, clean B2B look.
+- **Landing** (`/RCTraining/`): hero, why this matters, agenda, speakers, offer, resources.
+- **Signup** (`/RCTraining/signup/`): training details and registration form (payment via Wise).
+- **Thanks** (`/RCTraining/thanks/`): post-registration confirmation.
+- **Brand**: VIA CO (wearevia.co). VIA palette, Inter + Montserrat, en-AU.
 
 ---
 
@@ -16,35 +17,27 @@ Static landing page for the **VIA CO** pitch at **NJA Meetup** (Sydney Talent Me
 
 ```
 NJA/
-├── README.md                 ← You are here (project rundown)
+├── README.md
 ├── package.json
-├── astro.config.mjs
+├── astro.config.mjs          ← base: '/RCTraining'
 ├── tailwind.config.mjs
-├── tsconfig.json
-├── public/
-│   └── favicon.svg
-├── docs/                      ← For LLMs / context (not part of the website)
-│   ├── README.md              ← What the project is, doc index
-│   ├── nja-meetup-pitch.md    ← Community + event profile
-│   ├── via-co-context.md      ← VIA CO company context
-│   └── pitch-script.md        ← Live pitch script
+├── public/via-assets/        ← logos, Buildup SVGs, PDFs, etc.
+├── docs/                     ← LLM/context (gitignored)
 └── src/
     ├── layouts/
-    │   └── Layout.astro       ← HTML shell, meta, fonts, global styles
+    │   └── Layout.astro       ← HTML shell, meta, fonts, header logo
     ├── pages/
-    │   └── index.astro        ← Main page (all content and config)
+    │   ├── index.astro        ← Landing (all copy in constants)
+    │   ├── signup.astro        ← Registration page
+    │   └── thanks.astro       ← Thank-you page
     ├── components/
-    │   ├── Hero.astro         ← Headline, subtitle, conference, primary CTA
-    │   ├── Abstract.astro     ← Rich text section (“Why this matters”)
-    │   ├── KeyTakeaways.astro ← Numbered cards (“What you’ll get”)
-    │   ├── SpeakerBio.astro   ← Name, title, bio, company link
-    │   ├── Resources.astro     ← Links (“Next steps”)
-    │   └── Footer.astro       ← Links + “Powered by”
+    │   ├── landing/           ← Hero, AbstractEventDetails, Agenda, etc.
+    │   └── signup/            ← SignupForm
     └── styles/
-        └── global.css         ← Tailwind + base styles
+        └── global.css
 ```
 
-- **Build output**: `dist/` (static HTML/CSS). Not committed (see `.gitignore`).
+- **Build output**: `dist/` (see `.gitignore`).
 
 ---
 
@@ -61,20 +54,8 @@ npm run preview  # Serve dist/ locally
 
 ## Customising content
 
-Everything for the **homepage** is in **`src/pages/index.astro`**:
-
-| What | Where in `index.astro` |
-|------|------------------------|
-| **Training / team program URLs** | Top of file: `TRAINING_SIGNUP_URL`, `TEAM_PROGRAM_URL` (replace `#signup` with your real signup link, e.g. from QR). |
-| **Page title & meta** | `<Layout title="…" description="…" />`. |
-| **Hero** | `Hero` props: `title`, `subtitle`, `conferenceName`, `date`, `primaryCtaUrl`, `primaryCtaLabel`. |
-| **Why this matters** | `Abstract` `content` (HTML string). |
-| **What you’ll get** | `KeyTakeaways` `items` (array of strings). |
-| **Speaker** | `SpeakerBio`: `name`, `title`, `bio`, `companyName`, `companyUrl`; optional `imageSrc` for a headshot. |
-| **Next steps** | `Resources` `resources` array: `title`, `href`, `description`. |
-| **Footer** | `Footer` `socialLinks`, `poweredBy`, `poweredByUrl`. |
-
-Components live in `src/components/` if you want to change layout or styling.
+- **Landing**: all homepage copy and config live in **`src/pages/index.astro`** (constants at the top, then components with props).
+- **Signup**: copy and form labels in **`src/pages/signup.astro`**; form behaviour in **`src/components/signup/SignupForm.astro`**.
 
 ---
 
@@ -91,38 +72,15 @@ Use these when editing copy or when another AI needs to understand the project.
 
 ---
 
-## Deploying to GitHub Pages
+## Deploying
 
-1. **Set your GitHub username and repo name** in `astro.config.mjs`:
-   - Replace `YOUR_GITHUB_USERNAME` with your GitHub username (e.g. `johndoe`).
-   - If your repo isn’t called `NJA`, change `repoName` to match (e.g. `nja-landing`).  
-   Your site will be at: **`https://YOUR_USERNAME.github.io/REPO_NAME/`**
-
-2. **Push the repo to GitHub** (if you haven’t already):
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/NJA.git
-   git push -u origin main
-   ```
-
-3. **Turn on GitHub Pages**:
-   - Repo → **Settings** → **Pages**.
-   - Under **Build and deployment**, set **Source** to **GitHub Actions**.
-
-4. **Deploy**:
-   - Every push to `main` runs the workflow in `.github/workflows/deploy.yml` (build + deploy).
-   - Or run it manually: **Actions** → **Deploy to GitHub Pages** → **Run workflow**.
-   - After it finishes, the site is live at the URL from step 1.
-
-**Deploying to cPanel (Git):** The repo includes a [`.cpanel.yml`](.cpanel.yml) for [cPanel Git deployment](https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/). Edit `.cpanel.yml` and set `DEPLOYPATH` to your account (e.g. `/home/your_cpanel_user/public_html/`). Ensure **Node.js** is set up on the server (cPanel → Setup Node.js App). Push to your cPanel Git repo; the post-receive hook will run `npm ci`, `npm run build`, and copy `dist/` into `DEPLOYPATH`.
-
-**Other hosts:** You can also upload the contents of **`dist/`** to Netlify, Vercel, S3, Cloudflare Pages, etc. For a non–GitHub Pages deploy, set `site` and `base` in `astro.config.mjs` as needed (e.g. `base: '/'`).
+- **GitHub Actions**: Push to `main` runs `.github/workflows/deploy.yml` (Node 20, `npm ci || npm install`, `npm run build`, FTP upload). Configure FTP secrets in the repo.
+- **cPanel**: [`.cpanel.yml`](.cpanel.yml) supports Git deploy; set `DEPLOYPATH` and Node.js in cPanel.
+- **Other**: Upload `dist/` to any static host. Set `site` and `base` in `astro.config.mjs` (e.g. `base: '/RCTraining'` for subpath).
 
 ---
 
 ## Tech
 
-- **Astro** 4.x — static site, single page.
-- **Tailwind CSS** 3.x — via `@astrojs/tailwind`.
-- **TypeScript** — for types only; no runtime TS in the built output.
-
-Colors and fonts are in `tailwind.config.mjs` (VIA navy palette) and `Layout.astro` (Inter from Google Fonts).
+- **Astro** 4.x, **Tailwind CSS** 3.x via `@astrojs/tailwind`, **TypeScript**.
+- Colours and fonts: `tailwind.config.mjs` (VIA palette), `Layout.astro` (Inter, Montserrat).

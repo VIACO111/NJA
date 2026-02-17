@@ -6,29 +6,23 @@ const BASE = import.meta.env.BASE_URL;
 const WISE_PAYMENT_URL = 'https://wise.com/pay/r/jhxzrcMaIq5jqzY';
 const CALENDAR_ONLINE_URL = 'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MG5saGxlZHMwYnZwMDNwYjVwMXN1N2QzYnQgZm91bmRlcnNAd2VhcmV2aWEuY28&tmsrc=founders%40wearevia.co';
 
-// ——— Page meta ———
+// ——— Page meta (aligned with index) ———
 const PAGE_TITLE = "Say the hard thing | Register | VIA CO";
-const PAGE_DESCRIPTION = "Register for Say the hard thing: Strategic Training for P&C Leaders. Online training session.";
+const PAGE_DESCRIPTION = "Free training for P&C folks: improve decision quality in your organisation and get more buy-in from your C-suite.";
 
-// ——— Main page copy ———
+// ——— Main page copy (match index hero) ———
 const BACK_LABEL = "Back to main";
-const MAIN_HEADING_LINE1 = "Real";
-const MAIN_HEADING_LINE2 = "Conversations.";
-const INTRO_PARAGRAPH = "Strategic Training for P&C Leaders. Register below to secure your spot.";
+const MAIN_HEADING_LINE1 = "Say the";
+const MAIN_HEADING_LINE2 = "hard thing.";
+const INTRO_PARAGRAPH = "A strategic training for P&C Leaders to understand the physiology of conflict, the cost of avoiding it, and how to build a compelling business case that will get your C-suite excited and on-board. Register below to secure your spot.";
 
-// ——— Training block ———
-const TRAINING_TITLE = "Online Strategic Training";
+// ——— Training block (aligned with index event details) ———
+const TRAINING_TITLE = "Say the hard thing";
 const TRAINING_BADGE = "Online";
-const LOCATION_LABEL = "Location: Google Meet (Link provided upon registration)";
-const TIME_LABEL = "Time: Thu, 26th Feb @ 1:00 PM (AEDT)";
+const LOCATION_LABEL = "Location: Zoom / Remote (link provided upon registration)";
+const TIME_LABEL = "Time: Thursday, 26th Feb @ 1:00 PM (AEDT)";
 const TRAINING_LEAD = "The most expensive mistake is the \"conversation not had.\"";
 const TRAINING_BODY = "When we avoid friction, we block innovation. This training is designed specifically for HR professionals and Talent leaders who want to master strategic influence and high-stakes facilitation.";
-const WHAT_WE_COVER_TITLE = "What we will cover:";
-const COVER_ITEMS: { label: string; text: string }[] = [
-  { label: "Building the Business Case", text: "Learn to calculate the Cost of Inaction to make proposals undeniable." },
-  { label: "The Physiology of Conflict", text: "Manage the \"gut response\" that blocks progress." },
-  { label: "The Practical Toolkit", text: "Master the Reset, 3F Framework, and Emptying the Bottle." },
-];
 const FEE_LABEL = "Registration Fee";
 const FEE_AMOUNT = "100 AUD";
 const FEE_NOTE = "";
@@ -37,7 +31,7 @@ const PAYMENT_CTA = "Continue to Payment (100 AUD)";
 
 // ——— Form column ———
 const FORM_HEADING = "Complete Registration";
-const FORM_SUBHEADING = "Secure your place for the training session.";
+const FORM_SUBHEADING = "Secure your place for Say the hard thing.";
 const FORM_FOOTER = "By registering, you agree to our privacy policy. We will send you the Google Meet link via email.";
 
 // ——— Form labels (passed to SignupForm) ———
@@ -47,7 +41,7 @@ const FORM_LABELS = {
   organization: "Organisation",
   role: "Role / Title",
   session: "Session",
-  sessionOption: "Online Training (Thu 26th Feb, 1PM AEDT)",
+  sessionOption: "Say the hard thing — Thursday, 26th Feb, 1:00 PM AEDT",
   promoLabel: "Promo Code (Optional)",
   promoPlaceholder: "",
   promoError: "Invalid promo code. Please enter a valid code or complete payment.",
@@ -94,18 +88,14 @@ const FORM_LABELS = {
               <div class="prose prose-slate text-slate-600 max-w-none">
                 <p class="font-bold text-via-black">{TRAINING_LEAD}</p>
                 <p>{TRAINING_BODY}</p>
-                <h4 class="text-via-black font-bold mt-4 mb-2 uppercase text-xs tracking-widest">{WHAT_WE_COVER_TITLE}</h4>
-                <ul class="space-y-2 text-sm">
-                  {COVER_ITEMS.map((item) => <li><strong>{item.label}:</strong> {item.text}</li>)}
-                </ul>
               </div>
               <div class="pt-4 border-t border-slate-50 flex items-center justify-between">
                 <div>
                   <p class="text-[10px] text-via-gray uppercase font-bold tracking-widest">{FEE_LABEL}</p>
                   <p class="text-xl font-black text-via-black">{FEE_AMOUNT}{FEE_NOTE && <span class="text-sm font-normal text-slate-400"> {FEE_NOTE}</span>}</p>
                 </div>
-                <a href={CALENDAR_ONLINE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-via-black hover:underline">
-                  <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Add Online Event to Calendar" class="h-6" />
+                <a href={CALENDAR_ONLINE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center">
+                  <img src="https://calendar.google.com/calendar/images/ext/gc_button1_en-GB.gif" alt="Google Calendar" border="0" class="h-6" />
                 </a>
               </div>
               <a href={WISE_PAYMENT_URL} target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 bg-via-light border border-slate-200 rounded-lg text-xs font-bold uppercase tracking-widest text-via-black hover:bg-slate-100 transition-colors">
