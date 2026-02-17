@@ -72,25 +72,25 @@ const list = speakers && speakers.length > 0
         </div>
       </div>
     ) : (
-      <div class="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
-        {list.map((speaker) => (
-          <div class="flex flex-col gap-8 sm:flex-row sm:items-start">
-            <div class="shrink-0">
-              {speaker.imageSrc ? (
-                <img
-                  src={speaker.imageSrc}
-                  alt={speaker.imageAlt ?? speaker.name}
-                  class="h-40 w-40 rounded-2xl object-cover shadow-lg grayscale sm:h-48 sm:w-48"
-                  width="192"
-                  height="192"
-                />
-              ) : (
-                <div class="flex h-40 w-40 items-center justify-center rounded-2xl bg-via-light text-slate-400 sm:h-48 sm:w-48" aria-hidden="true">
-                  <span class="text-sm font-medium">Headshot</span>
-                </div>
-              )}
+      <div class="mt-12 flex flex-col gap-12 lg:flex-row lg:items-start">
+        <div class="shrink-0 lg:w-80">
+          {list[0].imageSrc ? (
+            <img
+              src={list[0].imageSrc}
+              alt={list[0].imageAlt ?? "Jesús Fernández and Anastasiya Loukienko"}
+              class="w-full max-w-sm rounded-2xl object-cover shadow-lg grayscale mx-auto lg:mx-0 lg:max-w-none"
+              width="320"
+              height="320"
+            />
+          ) : (
+            <div class="h-64 w-full max-w-sm rounded-2xl bg-via-light flex items-center justify-center text-slate-400 mx-auto lg:mx-0" aria-hidden="true">
+              <span class="text-sm font-medium">Photo</span>
             </div>
-            <div class="min-w-0 flex-1">
+          )}
+        </div>
+        <div class="min-w-0 flex-1 grid grid-cols-1 gap-12 sm:grid-cols-2">
+          {list.map((speaker) => (
+            <div>
               <h3 class="text-xl font-semibold text-via-black">{speaker.name}</h3>
               {speaker.title && <p class="mt-1 text-base text-via-gray">{speaker.title}</p>}
               <p class="mt-2">
@@ -98,10 +98,10 @@ const list = speakers && speakers.length > 0
                   VIA Co
                 </a>
               </p>
-              <p class="mt-6 text-slate-600 leading-relaxed whitespace-pre-line">{speaker.bio}</p>
+              <p class="mt-6 text-slate-600 leading-relaxed">{speaker.bio}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     )}
   </div>
