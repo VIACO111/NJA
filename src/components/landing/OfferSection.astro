@@ -13,6 +13,8 @@ interface Props {
   description?: string;
   discountPercent?: string;
   discountTitle?: string;
+  /** Optional subline under the discount, e.g. "Up to $25,000 for HR professionals" */
+  discountSubline?: string;
 
   pdfButtonLabel?: string;
   calendlyButtonLabel?: string;
@@ -34,6 +36,7 @@ const {
   description,
   discountPercent = "30%",
   discountTitle = "OFF Team Performance Program",
+  discountSubline,
 
   pdfButtonLabel = "Download Program PDF",
   calendlyButtonLabel = "Book a Strategy Call",
@@ -74,6 +77,9 @@ const {
             <span class="text-5xl font-bold text-white mr-4">{discountPercent}</span>
             <div class="flex flex-col">
               <span class="text-lg font-semibold uppercase tracking-wider">{discountTitle}</span>
+              {discountSubline && (
+                <span class="text-base font-medium text-via-light mt-1 not-italic">{discountSubline}</span>
+              )}
             </div>
           </div>
 
