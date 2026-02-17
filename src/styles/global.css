@@ -5,16 +5,14 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    /* Page ends with content (footer) — no extra white space below */
+    min-height: 0;
+    height: auto;
   }
   body {
     @apply font-sans text-via-black antialiased;
-  }
-  /* Prevent massive white space at bottom on mobile: keep document strictly content-sized */
-  @media (max-width: 1023px) {
-    html,
-    body {
-      min-height: 0;
-      height: auto;
-    }
+    min-height: 0;
+    height: auto;
+    overflow-x: hidden;
   }
 }
