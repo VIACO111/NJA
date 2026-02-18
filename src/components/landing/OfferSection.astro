@@ -79,7 +79,9 @@ const {
           <div class="rounded-2xl border border-white/25 bg-white/10 p-6 sm:p-8 mb-8">
             <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
               <span class="text-5xl sm:text-6xl font-bold text-white tracking-tight">{discountPercent}</span>
-              <span class="text-2xl font-bold text-white uppercase tracking-wider">{discountTitle}</span>
+              {discountTitle && (
+                <span class="text-2xl font-bold text-white uppercase tracking-wider">{discountTitle}</span>
+              )}
             </div>
             {discountSubline && (
               <p class="mt-4 text-xl sm:text-2xl font-semibold text-white leading-snug">
