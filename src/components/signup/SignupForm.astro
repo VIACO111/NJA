@@ -4,8 +4,7 @@ export interface SignupFormLabels {
   email: string;
   organization: string;
   role: string;
-  session: string;
-  sessionOption: string;
+  njaCommunityLabel: string;
   promoLabel: string;
   promoPlaceholder: string;
   promoError: string;
@@ -21,8 +20,7 @@ const DEFAULT_LABELS: SignupFormLabels = {
   email: "Email Address",
   organization: "Organisation",
   role: "Role / Title",
-  session: "Session",
-  sessionOption: "Online Training (Thu 26th Feb, 1PM AEDT)",
+  njaCommunityLabel: "Are you part of the NJA community?",
   promoLabel: "Promo Code (Optional)",
   promoPlaceholder: "Enter code (or leave blank to pay $100)",
   promoError: "Invalid promo code. Please enter a valid code or complete payment.",
@@ -80,14 +78,13 @@ const CONTACT_HELP_TEXT = Astro.props.contactHelpText ?? 'Need help with payment
       </div>
     </div>
 
+    <input type="hidden" name="session_online" value="yes">
+    <input type="hidden" name="nja_community" id="nja-community-value" value="no">
     <div class="space-y-2">
-      <label class="block text-sm font-semibold text-via-black uppercase tracking-wider">{L.session}</label>
-      <div class="flex flex-col space-y-3">
-        <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-          <input type="checkbox" name="session_online" value="yes" checked class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
-          <span class="ml-3 text-slate-700 font-medium">{L.sessionOption}</span>
-        </label>
-      </div>
+      <label class="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+        <input type="checkbox" id="nja-community" class="w-4 h-4 text-via-black focus:ring-via-black border-slate-300 rounded">
+        <span class="ml-3 text-slate-700 font-medium">{L.njaCommunityLabel}</span>
+      </label>
     </div>
 
     <div class="space-y-2">
@@ -144,18 +141,24 @@ const CONTACT_HELP_TEXT = Astro.props.contactHelpText ?? 'Need help with payment
 </section>
 
 <script>
-  const VALID_PROMO_CODE = 'NJAFREE';
+  const VALID_PROMO_CODES = ['NJAFREE', 'VIAFREE'];
   const paymentModal = document.getElementById('payment-modal');
   const paymentOverlay = document.getElementById('payment-overlay');
   const closePaymentModal = document.getElementById('close-payment-modal');
   const paymentCompleteBtn = document.getElementById('payment-complete-btn');
   const promoInput = document.getElementById('promo');
   const promoError = document.getElementById('promo-error');
-  const form = document.querySelector('form');
-  const submitBtn = document.getElementById('submit-btn');
+  const njaCommunityCheckbox = document.getElementById('nja-community');
+  const njaCommunityValue = document.getElementById('nja-community-value') as HTMLInputElement | null;
+
+  function syncNjaCommunityToSubmission() {
+    if (njaCommunityValue) {
+      njaCommunityValue.value = (njaCommunityCheckbox as HTMLInputElement | null)?.checked ? 'yes' : 'no';
+    }
+  }
 
   function validatePromoCode(code) {
-    return code.trim().toUpperCase() === VALID_PROMO_CODE.toUpperCase();
+    return code.trim() && VALID_PROMO_CODES.includes(code.trim().toUpperCase());
   }
 
   function showPaymentModal() {
@@ -185,7 +188,7 @@ const CONTACT_HELP_TEXT = Astro.props.contactHelpText ?? 'Need help with payment
   // Payment complete button - allows form submission after payment
   paymentCompleteBtn?.addEventListener('click', () => {
     hidePaymentModal();
-    // Submit the form after payment is completed
+    syncNjaCommunityToSubmission();
     if (form) {
       form.submit();
     }
@@ -203,6 +206,15 @@ const CONTACT_HELP_TEXT = Astro.props.contactHelpText ?? 'Need help with payment
 
   // Form submission handler
   form?.addEventListener('submit', (e) => {
+    // Always sync NJA community checkbox to hidden field so submission includes yes/no
+    syncNjaCommunityToSubmission();
+
+    // NJA community members go straight to thank you page (no payment)
+    if ((njaCommunityCheckbox as HTMLInputElement | null)?.checked) {
+      hidePromoError();
+      return true;
+    }
+
     const promoCode = promoInput?.value.trim() || '';
     
     // If no promo code or invalid promo code, show payment modal
